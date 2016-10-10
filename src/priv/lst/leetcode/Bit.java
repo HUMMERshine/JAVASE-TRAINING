@@ -6,6 +6,7 @@ public class Bit {
 	
 	public static void main(String[] args) {
 		new Bit().reverseBits(1);
+		System.out.println(Math.sqrt(7));
 	}
 	
 	public int reverseBits(long n) {
@@ -33,4 +34,27 @@ public class Bit {
         System.out.println(result);
         return (int)result;
     }
+	
+	public void prac318(){
+		int i = 0;
+		char ch = 'c';
+		
+		int result = ch - 'a';
+		
+		i = 1 << result;
+		
+		boolean x =  (i | result) == 0;//==优先级比&|^高但比！低
+	}
+	
+	@Test
+	public void pracx(){
+		int i = -1;
+		//int k = i >>> 28;
+		System.out.println(i >>> 28);
+		int k;
+		k = i >>> 28;
+		int a = k & 15;
+		System.out.println(a);
+		//System.out.println(k & 15);
+	}
 }

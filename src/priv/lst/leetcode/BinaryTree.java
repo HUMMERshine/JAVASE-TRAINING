@@ -66,7 +66,7 @@ public class BinaryTree {
 				p = p.getLeft();
 			}
 
-			if (!stack.isEmpty()) {
+			if (!stack.isEmpty()) {//在先序遍历中该条件不必要
 				p = stack.pop();// 左子树已经全被访问过，就出栈。
 				p = p.getRight();
 			}
