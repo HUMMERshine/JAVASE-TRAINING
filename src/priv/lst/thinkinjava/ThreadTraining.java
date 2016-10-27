@@ -72,7 +72,6 @@ public class ThreadTraining {
 
 		});
 		backgroundThread.start();
-
 		TimeUnit.SECONDS.sleep(5);
 		stopRequested = true;
 	}
@@ -96,7 +95,6 @@ public class ThreadTraining {
 				// TODO Auto-generated method stub
 				count.count();
 			}
-			
 		};
 		for(int i = 0; i < 10; i++){
 			new Thread(runnable).start();
