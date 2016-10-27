@@ -20,21 +20,6 @@ public class NioTrainning {
 			e.printStackTrace();
 		}
 	}
-
-	public static void byteToInt(){
-		ByteBuffer bb = ByteBuffer.allocate(1024);
-		IntBuffer ib = bb.asIntBuffer();//bb 和 ib共同操作这1024个字节空间。
-		ib.put(new int []{1,4,6,8,10});
-		
-		System.out.println(" " + bb.position() +" " + ib.position() +" " + bb.limit() +" " + ib.limit() +" " + bb.capacity() +" " + ib.capacity());
-		bb.rewind();
-		//bb.filp(); 如果使用该方法，bb的posion变为0，limit变为0.也即清空了该bb。但是数据仍然在bb内。
-		System.out.println(" " + bb.position() +" " + ib.position() +" " + bb.limit() +" " + ib.limit() +" " + bb.capacity() +" " + ib.capacity());
-		ib.flip();//ib可以使用flip，因为ib执行了put操作position已经变成了5.bb的position不会变。
-		System.out.println(" " + bb.position() +" " + ib.position() +" " + bb.limit() +" " + ib.limit() +" " + bb.capacity() +" " + ib.capacity());
-		System.out.println(ib.get(0));
-		System.out.println(bb.getInt());
-	}
 	
 	public static void byteBuffer() throws IOException {
 		RandomAccessFile aFile = new RandomAccessFile("e:\\login2.jsp", "rw");
