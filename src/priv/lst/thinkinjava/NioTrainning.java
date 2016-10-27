@@ -2,6 +2,7 @@ package priv.lst.thinkinjava;
 
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
@@ -13,13 +14,28 @@ public class NioTrainning {
 		intBuffer();
 		try {
 			program();
-			byteBuffer();
+			byteToInt();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
+	public static void byteToInt(){
+		ByteBuffer bb = ByteBuffer.allocate(1024);
+		IntBuffer ib = bb.asIntBuffer();//bb 和 ib共同操作这1024个字节空间。
+		ib.put(new int []{1,4,6,8,10});
+		
+		System.out.println(" " + bb.position() +" " + ib.position() +" " + bb.limit() +" " + ib.limit() +" " + bb.capacity() +" " + ib.capacity());
+		bb.rewind();
+		//bb.filp(); 如果使用该方法，bb的posion变为0，limit变为0.也即清空了该bb。但是数据仍然在bb内。
+		System.out.println(" " + bb.position() +" " + ib.position() +" " + bb.limit() +" " + ib.limit() +" " + bb.capacity() +" " + ib.capacity());
+		ib.flip();//ib可以使用flip，因为ib执行了put操作position已经变成了5.bb的position不会变。
+		System.out.println(" " + bb.position() +" " + ib.position() +" " + bb.limit() +" " + ib.limit() +" " + bb.capacity() +" " + ib.capacity());
+		System.out.println(ib.get(0));
+		System.out.println(bb.getInt());
+	}
+	
 	public static void byteBuffer() throws IOException {
 		RandomAccessFile aFile = new RandomAccessFile("e:\\login2.jsp", "rw");
 		FileChannel inChannel = aFile.getChannel();
@@ -83,7 +99,10 @@ public class NioTrainning {
 		ByteBuffer buffer = ByteBuffer.allocate(1024);
 
 		// 读取数据到缓冲区
-		fc.read(buffer);
+		long result = fc.read(buffer);
+		//result = fc.read(buffer);
+		System.out.println("------------");
+		System.out.println(result);
 
 		buffer.flip();
 
@@ -91,7 +110,26 @@ public class NioTrainning {
 			byte bx = buffer.get();
 			System.out.print(((char) bx));
 		}
-
+System.out.println("\n***********");
+buffer.flip();//重置缓冲区，继续读一遍缓冲区。
+		while (buffer.remaining() > 0) {
+			byte bx = buffer.get();
+			System.out.print((bx) + " ");
+		}
+		buffer.flip();
+		System.out.println("\n------------");//直接将输入通道与输出通道对接。
+		FileChannel out = new FileOutputStream("e:\\a.txt").getChannel();
+		fc.transferTo(0, fc.size(), out);
 		fins.close();
+		
+		ByteBuffer bb = ByteBuffer.allocate(1024);
+		bb.asCharBuffer().put("hello");
+		bb.rewind();//跟flip有区别
+		System.out.println(bb.position() + " " + bb.limit());
+		char cc;
+		while((cc = bb.getChar()) != 0 ){
+			System.out.println(cc + " ");
+		}
+		System.out.println(bb.position());
 	}
 }
