@@ -2,13 +2,28 @@ package priv.lst.thinkinjava;
 
 import java.util.concurrent.TimeUnit;
 
+import org.junit.Test;
+
 public class ThreadTraining {
 	private static boolean stopRequested;
 	public volatile static int count = 0;
 
 	public static void main(String[] args) throws InterruptedException {
 		// stop();
-		volatileTest();
+		//volatileTest();
+		Runnable runnable = new Runnable(){
+			Count count = new Count();
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				count.count();
+			}
+			
+		};
+		for(int i = 0; i < 10; i++){
+			new Thread(runnable).start();
+			//Thread.sleep(10);
+		}
 	}
 
 	public  static void inc() {
@@ -60,5 +75,31 @@ public class ThreadTraining {
 
 		TimeUnit.SECONDS.sleep(5);
 		stopRequested = true;
+	}
+	
+	/*public class Count {
+		private int num;
+		public void count(){
+			for(int i = 1; i <= 10; i++){
+				num += i;
+			}
+			System.out.println(Thread.currentThread().getName() + "-" + num);
+		}
+	}*/
+	
+	@Test
+	public void countTest(){
+		Runnable runnable = new Runnable(){
+			Count count = new Count();
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				count.count();
+			}
+			
+		};
+		for(int i = 0; i < 10; i++){
+			new Thread(runnable).start();
+		}
 	}
 }

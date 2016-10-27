@@ -36,4 +36,30 @@ public class HashMapTraining {
 		System.out.println(a);
 		Map<Character, Integer> map2 = new HashMap<>();
 	}
+	
+	@Test
+	public void training166(){
+		int a = 1000, b =3;
+		int r = 0;
+		HashMap<Integer, Integer> map = new HashMap<>();
+ 		StringBuilder sb = new StringBuilder();
+ 		if(a % b == 0){
+ 			sb.append(a/b);
+ 		}else{
+ 			sb.append(a/b).append('.');
+ 		}
+ 		a = a % b;
+		while(a != 0){
+			if(map.containsKey(a)){
+				sb.insert(map.get(a), "(");
+				sb.append(')');
+				break;
+			}
+			map.put(a, sb.length());
+			a = a * 10;
+			sb.append(a / b);
+			a = a % b;
+		}
+		System.out.println(sb.toString());
+	}
 }
