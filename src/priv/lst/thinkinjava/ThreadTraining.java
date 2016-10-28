@@ -100,4 +100,8 @@ public class ThreadTraining {
 			new Thread(runnable).start();
 		}
 	}
+	
+	public void excutorDemo(){
+		
+	}
 }
