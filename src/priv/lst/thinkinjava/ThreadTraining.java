@@ -1,5 +1,6 @@
 package priv.lst.thinkinjava;
 
+import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Test;
@@ -8,7 +9,20 @@ public class ThreadTraining {
 	private static boolean stopRequested;
 	public volatile static int count = 0;
 
+	@Test
+	public void testSemaphore(){
+		PrintQueue printQueue = new PrintQueue();
+		Thread [] thread = new Thread[10];
+		for(int i = 0; i<10; i++){
+			thread[i] = new Thread(new Job(printQueue), "Thread" + i);
+		}
+		for(int i = 0; i<10 ; i++){
+			thread[i].start();
+		}
+	}
+	
 	public static void main(String[] args) throws InterruptedException {
+		
 		// stop();
 		//volatileTest();
 		Runnable runnable = new Runnable(){
@@ -101,7 +115,41 @@ public class ThreadTraining {
 		}
 	}
 	
-	public void excutorDemo(){
-		
+	class PrintQueue{
+		private Semaphore semaphore;
+		public PrintQueue(){
+			this.semaphore = new Semaphore(1);
+		}
+		public void printJob(Object document){
+			try {
+				semaphore.acquire();
+				long duration = (long ) (Math.random() * 10);
+				System.out.printf("%s: PrintQueue: printing a job during %d seconds\n", Thread.currentThread().getName(), duration);
+				Thread.sleep(duration);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				//System.out.println(semaphore.availablePermits());
+				semaphore.release();
+				//System.out.println(semaphore.availablePermits());
+			}
+		}
 	}
+	class Job implements Runnable{
+		private PrintQueue printQueue; 
+		public Job(PrintQueue printQueue){
+			this.printQueue = printQueue;
+		}
+		@Override
+		public void run() {
+			// TODO Auto-generated method stub
+			System.out.printf("%s: Going to print a job\n", Thread.currentThread().getName());
+			printQueue.printJob(new Object());
+			System.out.printf("%s: The document has been printed\n", Thread.currentThread().getName());
+		}
+	}
+	
+	
+	
 }
