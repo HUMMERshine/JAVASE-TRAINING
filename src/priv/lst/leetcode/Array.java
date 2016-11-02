@@ -55,4 +55,12 @@ public class Array {
 		list.add(2);
 		System.out.println(list.subList(0, 1));
 	}
+	
+	//64
+	@Test
+	public void minPathSum(){
+		int [][] nums = new int [3][5];
+		System.out.println(nums.length + " " + nums[0].length);
+	}
+	
 }
