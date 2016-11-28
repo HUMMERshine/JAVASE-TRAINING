@@ -1,4 +1,4 @@
-package chapter2;
+package priv.lst.tij.chapter2;
 
 /** a class comment */
 public class Practise14

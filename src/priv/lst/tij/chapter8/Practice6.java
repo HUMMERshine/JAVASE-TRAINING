@@ -1,4 +1,4 @@
-package chapter8;
+package priv.lst.tij.chapter8;
 
 class Father
 {

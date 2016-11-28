@@ -56,5 +56,12 @@ public class Bit {
 		int a = k & 15;
 		System.out.println(a);
 		//System.out.println(k & 15);
+		short s = 3;
+		int m = 3;
+		long l = 3;
+
+		System.out.println(s >> 32);
+		System.out.println(m >> 32);
+		System.out.println(l >> 32);
 	}
 }

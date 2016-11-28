@@ -10,11 +10,15 @@ public class Array {
 	public void test88() {
 		int nums[] = {};
 		int[] nums2 = new int[10];
-		List<Integer> list = new ArrayList<Integer>(10);
+		Integer [] nums3 = new Integer[10];
+		List<Integer> list = new ArrayList<Integer>(10);//只是指定了容量，里面并没有数据调用size返回的是数据数量
 
 		System.out.println(list.size());
+		System.out.println(nums2.length);
+		System.out.println(nums3.length);
 		System.out.println(nums.length);
 		System.out.println(nums2[0] + " " + nums2[1]);
+		System.out.println(nums3[0] + " " + nums3[1]);
 	}
 
 	@Test

@@ -89,4 +89,18 @@ public class MathTraining {
         return mul;
         
     }
+	
+	@Test
+	public void number(){
+		int a = 0x13;
+		char x = 'x';
+		
+		System.out.println(a);
+		System.out.println(Integer.toBinaryString(a));
+		System.out.println(Integer.toHexString(a));
+		System.out.println(Integer.toOctalString(a));
+		System.out.println(false ? 1111111111 : 'x');
+		System.out.println('a' + 12);
+	}
+	
 }

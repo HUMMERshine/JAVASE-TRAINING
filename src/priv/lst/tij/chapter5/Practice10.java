@@ -1,4 +1,4 @@
-package chapter5;
+package priv.lst.tij.chapter5;
 
 public class Practice10
 {

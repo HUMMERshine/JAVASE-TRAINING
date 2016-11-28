@@ -1,4 +1,4 @@
-package chapter10;
+package priv.lst.tij.chapter10;
 
 /**
  * <P>

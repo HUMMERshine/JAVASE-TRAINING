@@ -7,6 +7,10 @@ import org.junit.Test;
 
 public class StringTraining {
 	public static void main(String[] args) {
+		String s1 = "ab" + "cd";
+		String s2 = "abcd";
+		System.out.println(s1 == s2);
+		String str6 = "b"; String str7 = "a" + str6; String str67 = "ab"; System.out.println("str7 = str67 : "+ (str7 == str67)); final String str8 = "b"; String str9 = "a" + str8; String str89 = "ab"; System.out.println("str9 = str89 : "+ (str9 == str89));
 		new StringTraining().compareVersion("1", "0");
 	}
 
@@ -59,6 +63,12 @@ public class StringTraining {
 		if (sb.length() == 0)
 			return;
 		System.out.println(sb.deleteCharAt(0).toString());
+		
+		String str = "1.2.3.4.5..6.7";
+		String[] array = str.split("\\.");
+		for(String s1 : array){
+			System.out.println(s1);
+		}
 	}
 
 	@Test

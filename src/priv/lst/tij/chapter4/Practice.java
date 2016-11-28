@@ -1,4 +1,4 @@
-package chapter4;
+package priv.lst.tij.chapter4;
 
 import java.util.Arrays;
 import java.util.Random;

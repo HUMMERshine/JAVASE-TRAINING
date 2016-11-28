@@ -1,4 +1,4 @@
-package chapter3;
+package priv.lst.tij.chapter3;
 
 import static net.mindview.util.Print.*;
 
