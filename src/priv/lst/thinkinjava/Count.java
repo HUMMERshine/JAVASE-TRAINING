@@ -1,7 +1,5 @@
 package priv.lst.thinkinjava;
 
-import org.w3c.dom.ls.LSException;
-
 public class Count {
 	private int num;
 	public void count(){
