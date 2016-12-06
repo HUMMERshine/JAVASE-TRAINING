@@ -1,5 +1,7 @@
 package priv.lst.thinkinjava;
 
+import org.w3c.dom.ls.LSException;
+
 public class Count {
 	private int num;
 	public void count(){
@@ -7,5 +9,6 @@ public class Count {
 			num += i;
 		}
 		System.out.println(Thread.currentThread().getName() + "-" + num);
+		System.out.println("HelloWorld");
 	}
 }
