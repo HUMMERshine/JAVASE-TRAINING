@@ -20,9 +20,9 @@ public class NioTrainning {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static void byteBuffer() throws IOException {
-		RandomAccessFile aFile = new RandomAccessFile("e:\\login2.jsp", "rw");
+		RandomAccessFile aFile = new RandomAccessFile("/Users/lishutao/code/java/HelloWorld.java", "rw");
 		FileChannel inChannel = aFile.getChannel();
 
 		ByteBuffer buf = ByteBuffer.allocate(1024);
@@ -43,21 +43,24 @@ public class NioTrainning {
 		aFile.close();
 	}
 
-	public static void byteToInt(){
+	public static void byteToInt() {
 		ByteBuffer bb = ByteBuffer.allocate(1024);
-		IntBuffer ib = bb.asIntBuffer();//bb 和 ib共同操作这1024个字节空间。
-		ib.put(new int []{1,4,6,8,10});
-		
-		System.out.println(" " + bb.position() +" " + ib.position() +" " + bb.limit() +" " + ib.limit() +" " + bb.capacity() +" " + ib.capacity());
+		IntBuffer ib = bb.asIntBuffer();// bb 和 ib共同操作这1024个字节空间。
+		ib.put(new int[] { 1, 4, 6, 8, 10 });
+
+		System.out.println(" " + bb.position() + " " + ib.position() + " " + bb.limit() + " " + ib.limit() + " "
+				+ bb.capacity() + " " + ib.capacity());
 		bb.rewind();
-		//bb.filp(); 如果使用该方法，bb的posion变为0，limit变为0.也即清空了该bb。但是数据仍然在bb内。
-		System.out.println(" " + bb.position() +" " + ib.position() +" " + bb.limit() +" " + ib.limit() +" " + bb.capacity() +" " + ib.capacity());
-		ib.flip();//ib可以使用flip，因为ib执行了put操作position已经变成了5.bb的position不会变。
-		System.out.println(" " + bb.position() +" " + ib.position() +" " + bb.limit() +" " + ib.limit() +" " + bb.capacity() +" " + ib.capacity());
+		// bb.filp(); 如果使用该方法，bb的posion变为0，limit变为0.也即清空了该bb。但是数据仍然在bb内。
+		System.out.println(" " + bb.position() + " " + ib.position() + " " + bb.limit() + " " + ib.limit() + " "
+				+ bb.capacity() + " " + ib.capacity());
+		ib.flip();// ib可以使用flip，因为ib执行了put操作position已经变成了5.bb的position不会变。
+		System.out.println(" " + bb.position() + " " + ib.position() + " " + bb.limit() + " " + ib.limit() + " "
+				+ bb.capacity() + " " + ib.capacity());
 		System.out.println(ib.get(0));
 		System.out.println(bb.getInt());
 	}
-	
+
 	public static void intBuffer() {
 		// 分配新的int缓冲区，参数为缓冲区容量
 		// 新缓冲区的当前位置将为零，其界限(限制位置)将为其容量。它将具有一个底层实现数组，其数组偏移量将为零。
@@ -82,7 +85,7 @@ public class NioTrainning {
 	}
 
 	public static void program() throws IOException {
-		FileInputStream fin = new FileInputStream("e:\\login2.jsp");
+		FileInputStream fin = new FileInputStream("/Users/lishutao/code/java/HelloWorld.java");
 
 		BufferedInputStream bufferStream = new BufferedInputStream(fin);
 		byte[] b = new byte[1024];
@@ -93,14 +96,14 @@ public class NioTrainning {
 		System.out.println("************");
 		fin.close();
 		// 创建缓冲区
-		FileInputStream fins = new FileInputStream("e:\\login2.jsp");
+		FileInputStream fins = new FileInputStream("/Users/lishutao/code/java/HelloWorld.java");
 		// 获取通道
 		FileChannel fc = fins.getChannel();
 		ByteBuffer buffer = ByteBuffer.allocate(1024);
 
 		// 读取数据到缓冲区
 		long result = fc.read(buffer);
-		//result = fc.read(buffer);
+		// result = fc.read(buffer);
 		System.out.println("------------");
 		System.out.println(result);
 
@@ -110,24 +113,24 @@ public class NioTrainning {
 			byte bx = buffer.get();
 			System.out.print(((char) bx));
 		}
-System.out.println("\n***********");
-buffer.flip();//重置缓冲区，继续读一遍缓冲区。
+		System.out.println("\n***********");
+		buffer.flip();// 重置缓冲区，继续读一遍缓冲区。
 		while (buffer.remaining() > 0) {
 			byte bx = buffer.get();
 			System.out.print((bx) + " ");
 		}
 		buffer.flip();
-		System.out.println("\n------------");//直接将输入通道与输出通道对接。
-		FileChannel out = new FileOutputStream("e:\\a.txt").getChannel();
+		System.out.println("\n------------");// 直接将输入通道与输出通道对接。
+		FileChannel out = new FileOutputStream("/Users/lishutao/logs/a.txt").getChannel();
 		fc.transferTo(0, fc.size(), out);
 		fins.close();
-		
+
 		ByteBuffer bb = ByteBuffer.allocate(1024);
 		bb.asCharBuffer().put("hello");
-		bb.rewind();//跟flip有区别
+		bb.rewind();// 跟flip有区别
 		System.out.println(bb.position() + " " + bb.limit());
 		char cc;
-		while((cc = bb.getChar()) != 0 ){
+		while ((cc = bb.getChar()) != 0) {
 			System.out.println(cc + " ");
 		}
 		System.out.println(bb.position());

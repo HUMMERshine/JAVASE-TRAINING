@@ -34,6 +34,10 @@ public class IOTraining {
 	 */
 	@Test
 	public void dataOutPut(){
+		File list = new File(".");
+		for(String string : list.list()){
+			System.out.println(string);
+		}
 		File file = new File("/Users/lishutao/a.txt");
 		try {
 			DataOutputStream outputStream = new DataOutputStream(new FileOutputStream(file));
@@ -52,7 +56,7 @@ public class IOTraining {
 	 * bufferedReader
 	 */
 	@Test
-	public String BufferedInputFile(){
+	public void BufferedInputFile(){
 		try {
 			BufferedReader in = new BufferedReader(new FileReader("/Users/lishutao/Documents/a.txt"));
 			String s;
@@ -62,15 +66,14 @@ public class IOTraining {
 			}
 			in.close();
 			System.out.println(sb.toString());
-			return sb.toString();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}				
-		return null;
 	}
 	
+	@Test
 	public void MemoryInput(){
-		
+		System.out.println("hello world");
 	}
 }
