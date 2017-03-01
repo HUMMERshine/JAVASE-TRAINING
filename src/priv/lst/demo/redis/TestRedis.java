@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -161,16 +162,24 @@ public class TestRedis {
 		
 		byte[] result1 = objTranscoder.serialize(userA);
 		jedis.set("userA".getBytes(), result1);
-		byte[] bytes = jedis.get("userB".getBytes());
+		jedis.set("userB".getBytes(), result1);
+		jedis.set("userC".getBytes(), result1);
+		Set<String> set = jedis.keys("*");
+		for(String s : set){
+			System.out.println(s);
+			jedis.del(s);
+		}
+		jedis.del("userA".getBytes());
+		byte[] bytes = jedis.get("userA".getBytes());
 		if(bytes == null){
 			System.out.println("********");
 			return;
 		}
 		System.out.println(bytes.length);
 		System.out.println(Arrays.toString(bytes));
-		TestUser userA_userA = objTranscoder.deserialize(bytes);
+		TestUser userAa = objTranscoder.deserialize(bytes);
 		
-		System.out.println(userA_userA.getName() + "\t" + userA_userA.getAge());
+		System.out.println(userAa.getName() + "\t" + userAa.getAge());
 	}
     
     @Test

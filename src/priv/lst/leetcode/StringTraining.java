@@ -51,8 +51,9 @@ public class StringTraining {
 
 	@Test
 	public void StringSplit() {
-		String s = "aaa  bb c";
+		String s = "aaa  bb c ";
 		String[] strs = s.split(" ");
+		System.out.println(strs.length);
 		StringBuilder sb = new StringBuilder();
 		for (String str : strs) {
 			if (str.length() > 0 && str.charAt(0) != ' ') {
