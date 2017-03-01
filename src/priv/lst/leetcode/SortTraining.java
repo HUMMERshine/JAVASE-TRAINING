@@ -5,11 +5,44 @@ import java.util.Random;
 public class SortTraining {
 	public static void main(String[] args) {
 		int [] array = new int []{3,6,7,4,3,3};
-		fastSort(array, 0, array.length - 1);
+		bubbleSort(array);
+		//insertSort(array);
+		//fastSort(array, 0, array.length - 1);
 		for(int i : array){
 			System.out.println(i);
 		}
 	}
+	
+	public static void bubbleSort(int [] array){
+		for(int i = 0; i < array.length; i++){
+			for(int j = i + 1; j < array.length; j++){
+				if(array[i] > array[j]){
+					int temp = array[i];
+					array[i] = array[j];
+					array[j] = temp;
+				}
+			}
+		}
+	}
+	
+	public static void insertSort(int [] array){
+		for(int i = 1; i < array.length; i++){
+			int num = array[i];
+			int j = i - 1;
+			for(; j >= 0; j--){
+				if(array[j] < array[i]){
+					break;
+				}
+			}
+			if(i-1 != j){
+				for(int k = i - 1; k > j; k--){
+					array[k+1] = array[k];
+				}
+				array[j+1] = num;
+			}
+		}
+	}
+	
 	private void shuffle(int a[]) {//打乱顺序，可以最大概率保证快排不会遇到最坏情况
 
         final Random random = new Random();

@@ -3,7 +3,8 @@ package priv.lst.leetcode;
 public class HeapSort {
 	
 	public static void main(String[] args) {
-		
+		int [] list = new int []{3,5,7,2,9,4};
+		new HeapSort().heapSort(list);
 	}
 	
 	public void HeapAdjust(int[] array, int parent, int length) {
@@ -47,7 +48,11 @@ public class HeapSort {
 	        // 筛选 R[0] 结点，得到i-1个结点的堆
 	        HeapAdjust(list, 0, i);
 	        System.out.format("第 %d 趟: \t", list.length - i);
-	        printPart(list, 0, list.length - 1);
+	        for(int j = 0; j < list.length; j++){
+	        	System.out.print(list[j] + " ");
+	        }
+	        System.out.println();
+	        //printPart(list, 0, list.length - 1);
 	    }
 	}
 }
