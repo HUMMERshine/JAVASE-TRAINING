@@ -1,7 +1,10 @@
 package priv.lst.leetcode;
 
 import java.math.BigInteger;
+import java.util.Arrays;
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Queue;
 
 import org.junit.Test;
 
@@ -67,9 +70,10 @@ public class StringTraining {
 		
 		String str = "1.2.3.4.5..6.7";
 		String[] array = str.split("\\.");
-		for(String s1 : array){
-			System.out.println(s1);
-		}
+		System.out.println(Arrays.asList(array));
+		String str2 = "1^2^3^4^5^^6^7";
+		String[] array2 = str2.split("\\^");
+		System.out.println(Arrays.asList(array2));
 	}
 
 	@Test
