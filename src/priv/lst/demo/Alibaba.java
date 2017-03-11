@@ -4,11 +4,17 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 public class Alibaba {
+	static {
+		a = 2;
+	}
+	private static int a;
 	private static int [] m;
 	public static void main(String[] args) {
+		ArrayList<int []> lists; 
 		Integer [] array = {2,5,1,1,1,2,3,1,1};
 		System.out.println(String.valueOf(new char[]{'a','b'}));
 		find4part(array);
@@ -26,6 +32,18 @@ public class Alibaba {
 		
 		System.out.println(x+y);
 		
+		Byte b = 2;
+		testByte(b);
+		System.out.println(b);
+		
+		List<String> [] li;
+		List [] lis = new ArrayList[10];
+		li = (List<String>[])lis;
+	}
+	
+	public static void testByte(Byte b){
+		b = b++;
+		System.out.println(b+"***");
 	}
 	
 	public static void find4part(Integer [] array){
