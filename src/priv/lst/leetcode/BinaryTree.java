@@ -40,6 +40,9 @@ public class BinaryTree {
 		System.out.print("非递归中序遍历1:");
 		inorder1(root);
 		System.out.println();
+		System.out.print("非递归后序遍历1:");
+		postorder1(root);
+		System.out.println();
 		preorder(invertTree(root));
 		lowestCommonAncestor(root, new TreeNode('G'), new TreeNode('A'));
 	}
@@ -126,32 +129,43 @@ public class BinaryTree {
 			visit(p);
 		}
 	}
-
+	/** 非递归后序遍历*/
+	protected static void postorder1(TreeNode p) {
+		LinkedList<TreeNode> stack = new LinkedList<>();
+		TreeNode pre = null;
+		
+		while(!stack.isEmpty() || p != null){
+			while(p != null){
+				stack.push(p);
+				p = p.left;
+			}
+			
+			if(!stack.isEmpty()){
+				TreeNode node = stack.peek().right;//保存右子树的根节点。
+				if(node == null || pre == node){//判断右子树是否存在，或已经遍历过。之后遍历过右子树才能输出该节点。
+					p = stack.pop();
+					visit(p);
+					pre = p;
+					p = null;//关键点
+				}else{
+					p = node;//如果没有遍历过右子树，开始遍历右子树。
+				}
+			}
+		}
+	}
+	//左右转换树
 	protected static TreeNode invertTree(TreeNode root) {
 		TreeNode p = null;
 		if (root != null) {
 			p = new TreeNode(root.val);
 			if (root.left != null) {
-				p.right = new TreeNode(root.left.val);
-				invert(root.left, p.right);
+				p.right = invertTree(root.left);
 			}
 			if (root.right != null) {
-				p.left = new TreeNode(root.right.val);
-				invert(root.right, p.left);
+				p.left = invertTree(root.right);
 			}
 		}
 		return p;
-	}
-
-	public static void invert(TreeNode root, TreeNode p) {
-		if (root.left != null) {
-			p.right = new TreeNode(root.left.val);
-			invert(root.left, p.right);
-		}
-		if (root.right != null) {
-			p.left = new TreeNode(root.right.val);
-			invert(root.right, p.left);
-		}
 	}
 
 	private static boolean flag = true;

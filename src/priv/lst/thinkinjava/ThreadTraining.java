@@ -22,7 +22,7 @@ public class ThreadTraining {
 	}
 	
 	public static void main(String[] args) throws InterruptedException {
-		
+		new ThreadTraining().testSemaphore();
 		// stop();
 		//volatileTest();
 		Runnable runnable = new Runnable(){
@@ -130,9 +130,9 @@ public class ThreadTraining {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}finally {
-				//System.out.println(semaphore.availablePermits());
+				System.out.println(semaphore.availablePermits());
 				semaphore.release();
-				//System.out.println(semaphore.availablePermits());
+				System.out.println(semaphore.availablePermits());
 			}
 		}
 	}
