@@ -47,8 +47,14 @@ public class WaitSignalTraining {
 					}
 
 					queue.poll();
-					queue.notify();
-					System.out.println("从队列中取走一个元素，队列中剩余" + queue.size() + "个");
+					queue.notifyAll();
+					System.out.println(Thread.currentThread().getName() + "从队列中取走一个元素，队列中剩余" + queue.size() + "个");
+				}
+				try {
+					Thread.sleep(1);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
 			}
 		}
@@ -81,7 +87,7 @@ public class WaitSignalTraining {
 					}
 
 					queue.offer(1); // 每次插入一个元素
-					queue.notify();
+					queue.notifyAll();
 					System.out.println("向队列取中插入一个元素，队列剩余空间：" + (queueSize - queue.size()));
 				}
 			}

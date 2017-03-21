@@ -1,14 +1,22 @@
 package priv.lst.demo;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class DemoTest {
 
 	public static void main(String[] args) {
+		Byte k = 127;
+		System.out.println(k++);
 		char [] a = {'a', 'b', 'c'};
 		
 		System.out.println(Arrays.toString(a));
 		new DemoTest().reverse(1534236469);
+		
+		List<Integer> list = new ArrayList<>();
+		list.add(null);
+		System.out.println(list.size());
 	}
 public int reverse(int x) {
         

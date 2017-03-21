@@ -10,12 +10,17 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.util.Scanner;
 
 import org.junit.Test;
 
 
 public class IOTraining {
 	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		
+		System.out.println(scanner.nextInt());
+		
 		byte [] bb = new byte[]{3,2,3};
 		InputStreamReader isr = new InputStreamReader(System.in);
 		try {

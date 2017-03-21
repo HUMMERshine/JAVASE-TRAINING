@@ -62,6 +62,7 @@ class Searcher implements Runnable{
 		}
 		try {
 			barrier.await();//记得await()，阻塞线程当阻塞的线程达到定义参数（5个）个的时候,线程继续进行，并执行定义时参数里的另一个线程（group）
+			System.out.println("****" + Thread.currentThread().getName());
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -43,6 +43,9 @@ public class BinaryTree {
 		System.out.print("非递归后序遍历1:");
 		postorder1(root);
 		System.out.println();
+		System.out.print("非递归后序遍历2:");
+		postorder1(root);
+		System.out.println();
 		preorder(invertTree(root));
 		lowestCommonAncestor(root, new TreeNode('G'), new TreeNode('A'));
 	}
@@ -152,6 +155,27 @@ public class BinaryTree {
 				}
 			}
 		}
+	}
+	
+	/** 非递归后序遍历2*/
+	protected static void postorder2(TreeNode p) {//按照先根遍历的思路，1：先把左右子树访问顺序调换，2：最后把整个输出顺序翻转就行了。
+		Stack<TreeNode> stack = new Stack<TreeNode>();
+		LinkedList<Character> list = new LinkedList<>();
+		while (p != null || !stack.isEmpty()) {
+			while (p != null) {
+				//visit(p);
+				list.add(0, (Character)p.val);//全链表翻转，就是后序遍历。
+				stack.push(p);
+				p = p.getRight();//先右递归。
+			}
+
+			if (!stack.isEmpty()) {//在先序遍历中该条件不必要
+				p = stack.pop();// 右子树已经全被访问过，就出栈。
+				p = p.getLeft();//再左子树递归。
+			}
+		}
+		
+		System.out.println(list);
 	}
 	//左右转换树
 	protected static TreeNode invertTree(TreeNode root) {
