@@ -4,10 +4,10 @@ import java.util.Random;
 
 public class SortTraining {
 	public static void main(String[] args) {
-		int [] array = new int []{3,6,7,4,3,3};
-		bubbleSort(array);
+		int [] array = new int []{8,4,3,1,3,2,9};
+		//bubbleSort(array);
 		//insertSort(array);
-		//fastSort(array, 0, array.length - 1);
+		fastSort(array, 0, array.length - 1);
 		for(int i : array){
 			System.out.println(i);
 		}
@@ -52,16 +52,16 @@ public class SortTraining {
         }
     }
 	public static void fastSort(int [] array, int low, int high){
-		
 		int i = low - 1;
 		int j = high;
 		
 		while(true){
 			while(i < j && array[++i] < array[high]){}
-			while(i < j && array[--j] > array[high]){}
+			while(i < j && array[--j] >= array[high]){}//相等的都当做大于。
 			
 			if(i < j){
 				swap(array, i, j);
+				System.out.println("xxxx" + i +" "+ j);
 			}else{
 				break;
 			}
