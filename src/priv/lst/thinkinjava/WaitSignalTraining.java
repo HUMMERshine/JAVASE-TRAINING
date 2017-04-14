@@ -12,8 +12,10 @@ public class WaitSignalTraining {
 		Producer pro = cap.new Producer();
 		Thread cusT = new Thread(cus);
 		Thread proT = new Thread(pro);
+		Thread proT2 = new Thread(pro);
 
 		proT.start();
+		//proT2.start();
 		cusT.start();
 		Thread cusT1 = new Thread(cus);
 		Thread cusT2 = new Thread(cus);
@@ -74,7 +76,7 @@ public class WaitSignalTraining {
 		}
 
 		private void produce() {
-			while (count-- > 0) {
+			while (count-- > 0 ) {
 				synchronized (queue) {
 					while (queue.size() == queueSize) {
 						try {
@@ -87,7 +89,7 @@ public class WaitSignalTraining {
 					}
 
 					queue.offer(1); // 每次插入一个元素
-					queue.notifyAll();
+					queue.notify();
 					System.out.println("向队列取中插入一个元素，队列剩余空间：" + (queueSize - queue.size()));
 				}
 			}

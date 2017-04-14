@@ -1,16 +1,51 @@
 package priv.lst.leetcode;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class SortTraining {
 	public static void main(String[] args) {
 		int [] array = new int []{8,4,3,1,3,2,9};
+		int [] array2 = new int[] {9,8,7,6,5,4,3,2,1};
 		//bubbleSort(array);
 		//insertSort(array);
-		fastSort(array, 0, array.length - 1);
-		for(int i : array){
-			System.out.println(i);
+		//fastSort(array, 0, array.length - 1);
+		heapSort(array2);
+		System.out.println(Arrays.toString(array2));
+	}
+	
+	public static void heapSort(int [] array){
+		int len = array.length;
+		
+		for(int i = (len - 1)/2; i >= 0; i--){
+			heap(array, i, len);
 		}
+		swap(array, 0, --len);
+		while(len > 1){
+			
+			heap(array, 0, len);
+			
+			swap(array, 0, --len);
+		}
+	}
+	
+	public static void heap(int [] array, int start, int len){
+		int j = start * 2 + 1;
+		if(j >= len) return;
+		
+		int child = array[j];
+		int parent = array[start];
+		
+		if(j + 1 < len && child < array[j+1]){
+			child = array[j+1];
+			j++;
+		}
+		
+		if(array[start] < child){
+			swap(array, start, j);
+		}
+		System.out.println(Arrays.toString(array));
+		heap(array, j, len);
 	}
 	
 	public static void bubbleSort(int [] array){
@@ -56,8 +91,8 @@ public class SortTraining {
 		int j = high;
 		
 		while(true){
-			while(i < j && array[++i] < array[high]){}
-			while(i < j && array[--j] >= array[high]){}//相等的都当做大于。
+			while(i < j && array[++i] < array[high]);
+			while(i < j && array[--j] > array[high]);//这里不可以家等号防止O（n^2）发生
 			
 			if(i < j){
 				swap(array, i, j);

@@ -6,19 +6,20 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class LockDemo {
+	private static final int size = 100;
 	public static void main(String[] args) {
-		FileMock mock = new FileMock(100, 10);
+		FileMock mock = new FileMock(1000, 10);
 		Buffer buffer = new Buffer(20);
 		Producer producer = new Producer(mock, buffer);
 		Thread threadProducer = new Thread(producer, "producer");
-		Consumer consumers[] = new Consumer[3];
-		Thread[] threadConsumer = new Thread[3];
-		for (int i = 0; i < 3; i++) {
+		Consumer consumers[] = new Consumer[size];
+		Thread[] threadConsumer = new Thread[size];
+		for (int i = 0; i < size; i++) {
 			consumers[i] = new Consumer(buffer);
 			threadConsumer[i] = new Thread(consumers[i], "consumer" + i);
 		}
 		threadProducer.start();
-		for (int i = 0; i < 3; i++) {
+		for (int i = 0; i < size; i++) {
 			threadConsumer[i].start();
 		}
 	}
@@ -101,6 +102,7 @@ class Buffer {
 				System.out.printf("%s: Line Reader: %d\n",
 						Thread.currentThread().getName(), buffer.size());
 				space.signalAll();
+				lines.signalAll();
 			}
 		} catch (InterruptedException e) {
 			// TODO: handle exception

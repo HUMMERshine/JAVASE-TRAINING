@@ -1,5 +1,6 @@
 package priv.lst.leetcode;
 
+import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -9,7 +10,9 @@ import java.util.Queue;
 import org.junit.Test;
 
 public class StringTraining {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws UnsupportedEncodingException {
+		String s3 = "Hello world 中国";
+		System.out.println(new String(s3.getBytes("GBK"), "iso-8859-1"));
 		String s1 = "ab" + "cd";
 		String s2 = "abcd";
 		System.out.println(s1 == s2);
@@ -56,7 +59,9 @@ public class StringTraining {
 	public void StringSplit() {
 		String s = "aaa  bb c ";
 		String[] strs = s.split(" ");
-		System.out.println(strs[1].length());
+		String[] strs2 = s.split("\\s+");//通过使用正则表达式可以去除只能分隔单个空格的情况。
+		System.out.println(strs.length + " " + strs2.length);
+		
 		StringBuilder sb = new StringBuilder();
 		for (String str : strs) {
 			if (str.length() > 0 && str.charAt(0) != ' ') {

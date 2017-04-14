@@ -9,6 +9,8 @@ import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
 import java.nio.channels.FileChannel;
 
+import org.junit.Test;
+
 public class NioTrainning {
 	public static void main(String[] args) {
 		intBuffer();
@@ -21,26 +23,47 @@ public class NioTrainning {
 		}
 	}
 
-	public static void byteBuffer() throws IOException {
-		RandomAccessFile aFile = new RandomAccessFile("/Users/lishutao/code/java/HelloWorld.java", "rw");
-		FileChannel inChannel = aFile.getChannel();
+	@Test
+	public void byteBuffer() {
+		try {
+			RandomAccessFile aFile = new RandomAccessFile("/Users/lishutao/code/java/test.txt", "rw");
+			FileChannel inChannel = aFile.getChannel();
 
-		ByteBuffer buf = ByteBuffer.allocate(1024);
+			ByteBuffer buf = ByteBuffer.allocate(1024);
 
-		int bytesRead = inChannel.read(buf);
-		while (bytesRead != -1) {
-			System.out.println("\n-----------------------------------------");
-			System.out.println("Read " + bytesRead);
-			buf.flip();
+			int bytesRead = inChannel.read(buf);
+			while (bytesRead != -1) {
+				System.out.println("\n-----------------------------------------");
+				System.out.println("Read " + bytesRead);
+				buf.flip();
+				System.out.println(buf.limit());// 文本中的字符类型是一个字节的。
+				while (buf.hasRemaining()) {
+					System.out.print((char) buf.get());
+				}
 
-			while (buf.hasRemaining()) {
-				System.out.print((char) buf.get());
+				buf.clear();
+				bytesRead = inChannel.read(buf);
 			}
+			aFile.close();
+			
+			RandomAccessFile bFile = new RandomAccessFile("/Users/lishutao/code/java/test.txt", "rw");
+			FileChannel outChannel = bFile.getChannel();
+			//bFile.seek(bFile.length());从文件末尾开始写
+			//PrintWriter（filename，true）构造器的第二个值也是从末尾写数据。
 
 			buf.clear();
-			bytesRead = inChannel.read(buf);
+			for(int i = 0; i < 10; i++){
+				buf.put((byte)('a' + i));
+			}
+			
+			buf.flip();
+			
+			outChannel.write(buf);
+			
+			bFile.close();
+		} catch (Exception e) {
+
 		}
-		aFile.close();
 	}
 
 	public static void byteToInt() {
