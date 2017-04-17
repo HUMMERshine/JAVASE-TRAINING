@@ -16,7 +16,14 @@ public class StringTraining {
 		String s1 = "ab" + "cd";
 		String s2 = "abcd";
 		System.out.println(s1 == s2);
-		String str6 = "b"; String str7 = "a" + str6; String str67 = "ab"; System.out.println("str7 = str67 : "+ (str7 == str67)); final String str8 = "b"; String str9 = "a" + str8; String str89 = "ab"; System.out.println("str9 = str89 : "+ (str9 == str89));
+		String str6 = "b";
+		String str7 = "a" + str6;
+		String str67 = "ab";
+		System.out.println("str7 = str67 : " + (str7 == str67));
+		final String str8 = "b";
+		String str9 = "a" + str8;
+		String str89 = "ab";
+		System.out.println("str9 = str89 : " + (str9 == str89));
 		new StringTraining().compareVersion("1", "0");
 	}
 
@@ -55,13 +62,54 @@ public class StringTraining {
 		System.out.println(s.substring(0, 0));
 	}
 
+	public int Kmp_strStr(String haystack, String needle) {
+		if (needle.length() == 0)
+			return 0;
+		char[] chars = needle.toCharArray();
+		int[] next = getNext(chars);
+		int i = 0, j = 0;
+		while (i < haystack.length() && j < needle.length()) {
+			if (haystack.charAt(i) == needle.charAt(j)) {
+				i++;
+				j++;
+			} else {
+				if (j == 0) {
+					i++;
+				} else {
+					j = next[j] + 1;
+				}
+			}
+		}
+
+		return (j == needle.length()) ? (i - needle.length()) : -1;
+	}
+
+	public int[] getNext(char[] chars) {
+		int[] next = new int[chars.length];
+
+		next[0] = -1;
+		for (int i = 1, j = 0; i < chars.length; i++) {
+			j = next[i - 1];
+			while (chars[j + 1] != chars[i] && (j >= 0)) {
+				j = next[j];
+			}
+			if (chars[i] == chars[j + 1]) {
+				next[i] = j + 1;
+			} else {
+				next[i] = -1;
+			}
+		}
+
+		return next;
+	}
+
 	@Test
 	public void StringSplit() {
 		String s = "aaa  bb c ";
 		String[] strs = s.split(" ");
-		String[] strs2 = s.split("\\s+");//通过使用正则表达式可以去除只能分隔单个空格的情况。
+		String[] strs2 = s.split("\\s+");// 通过使用正则表达式可以去除只能分隔单个空格的情况。
 		System.out.println(strs.length + " " + strs2.length);
-		
+
 		StringBuilder sb = new StringBuilder();
 		for (String str : strs) {
 			if (str.length() > 0 && str.charAt(0) != ' ') {
@@ -72,7 +120,7 @@ public class StringTraining {
 		if (sb.length() == 0)
 			return;
 		System.out.println(sb.deleteCharAt(0).toString());
-		
+
 		String str = "1.2.3.4.5..6.7";
 		String[] array = str.split("\\.");
 		System.out.println(Arrays.asList(array));
@@ -86,8 +134,7 @@ public class StringTraining {
 		String a = "12345", b = "92345";
 		StringBuilder sb = new StringBuilder();
 		int signal = 0;
-		for (int i = a.length() - 1, j = b.length() - 1; j >= 0
-				|| i >= 0; i--, j--) {
+		for (int i = a.length() - 1, j = b.length() - 1; j >= 0 || i >= 0; i--, j--) {
 			int x, y;
 			if (i < 0) {
 				x = 0;
@@ -159,8 +206,7 @@ public class StringTraining {
 				} else {
 					char ch = s.charAt(i++);
 					int num2 = 0;
-					while (i < s.length() && s.charAt(i) != '+'
-							&& s.charAt(i) != '-') {
+					while (i < s.length() && s.charAt(i) != '+' && s.charAt(i) != '-') {
 						if (s.charAt(i) == ' ') {
 							i++;
 							continue;
@@ -203,14 +249,14 @@ public class StringTraining {
 		}
 		System.out.println(result);
 	}
-	
+
 	@Test
-	public void StringBuilderDemo(){
+	public void StringBuilderDemo() {
 		StringBuilder sb = new StringBuilder();
 		sb.append(new Integer(1));
 		sb.append(1);
 		Integer i = 1;
-		sb.append((char)2);
+		sb.append((char) 2);
 		System.out.println(sb.toString());
 	}
 }
