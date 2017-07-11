@@ -1,7 +1,6 @@
 package priv.lst.thinkinjava;
 
 import java.util.PriorityQueue;
-
 import java.util.LinkedList;
 
 public class WaitSignalTraining {
