@@ -19,7 +19,6 @@ public class SocketTraining {
 			ServerSocket server = new ServerSocket(44443);
 			System.out.println(InetAddress.getLocalHost().getHostAddress());
 			new Thread(new Runnable() {
-
 				@Override
 				public void run() {
 					// TODO Auto-generated method stub
