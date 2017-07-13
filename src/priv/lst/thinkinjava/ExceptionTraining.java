@@ -3,6 +3,7 @@ package priv.lst.thinkinjava;
 public class ExceptionTraining {
 	public static void main(String[] args) {
 		finallyDemo();
+		System.out.println(returnDemo());
 	}
 	
 	static Object finallyDemo(){
@@ -16,5 +17,16 @@ public class ExceptionTraining {
 			System.out.println("xxxxx");
 		}
 		return null;
+	}
+	
+	static int returnDemo(){
+		int i = 0;
+		try{
+			i++;
+			return i;
+		}finally{
+			i++;
+			//return i;
+		}
 	}
 }
