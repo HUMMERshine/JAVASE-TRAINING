@@ -1,4 +1,4 @@
-package priv.lst.thinkinjava;
+package priv.lst.thinkinjava.interr;
 
 import org.junit.Test;
 

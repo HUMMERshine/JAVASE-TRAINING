@@ -1,5 +1,11 @@
 package priv.lst.thinkinjava;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.io.PrintStream;
+
 public class ExceptionTraining {
 	public static void main(String[] args) {
 		finallyDemo();
@@ -7,12 +13,15 @@ public class ExceptionTraining {
 	}
 	
 	static Object finallyDemo(){
+		File file = new File("/Users/lst-bytedance/dump/exception.txt");
+		PrintStream stream = null;
 		try{
-			int i = 1;
+			stream = new PrintStream(new FileOutputStream(file));
+			int i = 0;
 			int k = 2 / i;
 			return null;
 		}catch(Exception e){
-			e.printStackTrace();
+			e.printStackTrace(stream);
 		}finally {
 			System.out.println("xxxxx");
 		}
