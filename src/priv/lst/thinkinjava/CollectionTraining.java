@@ -1,7 +1,6 @@
 package priv.lst.thinkinjava;
 
 import java.util.*;
-
 import net.mindview.util.PPrint;
 /*
  * Collection 可以插入空对象。
@@ -13,6 +12,7 @@ public class CollectionTraining {
 		set();
 		map();
 		queue();
+		sortedset();
 	}
 	
 	public static void list(){
@@ -53,6 +53,16 @@ public class CollectionTraining {
 			System.out.println("exception");
 		}
 		System.out.println(list2);
+		
+		
+		Iterator<Integer> it = list.iterator();
+		ListIterator<Integer> iterator = list.listIterator();
+		while(iterator.hasNext()){
+			System.out.println("*" + iterator.nextIndex() + iterator.next());
+		}
+		while(iterator.hasPrevious()){
+			System.out.println("*" + iterator.previousIndex() + iterator.previous());
+		}
 	}
 	
 	public static void linkedList() {
@@ -141,5 +151,30 @@ public class CollectionTraining {
 		}
 		
 		return "";
+	}
+	
+	public static void sortedset() {
+		SortedSet<Integer> set = new TreeSet<Integer>(new Comparator<Integer>() {
+			@Override
+			public String toString() {
+				// TODO Auto-generated method stub
+				return "递减排序:" + super.toString();
+			}
+			@Override
+			public int compare(Integer o1, Integer o2) {
+				// TODO Auto-generated method stub
+				return o2 - o1;
+			}
+		});
+		
+		Collections.addAll(set, 5, 4, 6, 9, 1, 2, 7, 3);
+		
+		PPrint.pprint(set);
+		System.out.println(set.comparator());
+		System.out.println(set.first());
+		System.out.println(set.last());
+		System.out.println(set.subSet(8, 3));
+		System.out.println(set.headSet(8));
+		System.out.println(set.tailSet(8));
 	}
 }

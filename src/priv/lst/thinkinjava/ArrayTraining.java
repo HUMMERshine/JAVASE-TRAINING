@@ -1,6 +1,8 @@
 package priv.lst.thinkinjava;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class ArrayTraining {
 	public static void main(String[] args) {
@@ -17,9 +19,14 @@ public class ArrayTraining {
 		
 		method1(1, 2, 3, 4);
 		method1((Object [])new Integer[]{1, 2, 3, 4, 5});
+		
+		List [] lists = new ArrayList[10];
+		//List<String> [] lists2 = new ArrayList<String>[10];
 	}
 	
-	public static void method1(Object ... args){
+	public static <T> void method1(Object ... args){
 		System.out.println(Arrays.toString(args));
+		
+		T [] array;
 	}
 }

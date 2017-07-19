@@ -11,7 +11,7 @@ public class ReflectTraining {
 		try {
 			Class<?> class1 = Class.forName("priv.lst.thinkinjava.User");
 			Class<?> class2 = new User().getClass();
-			Class<?> class3 = User.class;
+			Class<?> class3 = User.class;//不会初始化该类，只是加载。
 			System.out.println(class1.getName());
 			System.out.println(class2.getName());
 			System.out.println(class3.getName());
@@ -63,6 +63,8 @@ public class ReflectTraining {
 	        int co = Array.getLength(temp);
 	        System.arraycopy(temp, 0, newArr, 0, co);
 	        System.out.println(Arrays.toString((int [])newArr));
+	        
+	        Thread.sleep(100000);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -67,9 +67,9 @@ class Client implements Runnable {
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
-		int a = 1;
+		/*int a = 1;
 		int b = 0;
-		int c = a/b;
+		int c = a/b;*/
 		try {
 			while (true) {
 				Thread.sleep(1000);
