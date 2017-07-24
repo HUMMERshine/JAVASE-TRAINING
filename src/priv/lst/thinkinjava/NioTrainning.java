@@ -145,7 +145,15 @@ public class NioTrainning {
 		buffer.flip();
 		System.out.println("\n------------");// 直接将输入通道与输出通道对接。
 		FileChannel out = new FileOutputStream("/Users/lishutao/logs/a.txt").getChannel();
+		System.out.println("out size is :" + out.size());
 		fc.transferTo(0, fc.size(), out);
+		System.out.println("out2 size is :" + out.size());
+		
+		/*
+		 * 追加的方式向channel内写入数据。
+		 */
+		FileChannel out2 = new FileOutputStream("/Users/lishutao/logs/a.txt", true).getChannel();
+		fc.transferTo(0, fc.size(), out2);
 		fins.close();
 
 		ByteBuffer bb = ByteBuffer.allocate(1024);

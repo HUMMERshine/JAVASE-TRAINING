@@ -1,14 +1,14 @@
 package priv.lst.thinkinjava;
 
 import java.io.*;
-
+import java.util.Arrays;
 import java.util.Scanner;
 
 import org.junit.Test;
 
 public class IOTraining {
-	//private String path = "/Users/lishutao/Document";
-	private String path = "/Users/lst-bytedance/Documents/";
+	private String path = "/Users/lishutao/Document/";
+	//private String path = "/Users/lst-bytedance/Documents/";
 
 	public static void main(String[] args) {
 		byte b = 127;
@@ -132,6 +132,16 @@ public class IOTraining {
 			char [] chs = new char[100];
 			System.out.println(sr.read(chs));
 			System.out.println(chs);
+			
+			PrintWriter print2 = new PrintWriter(System.out, true);
+			print2.println(chs);
+			print2.close();
+			
+			System.out.println(Arrays.toString(chs));
+			PrintWriter print = new PrintWriter(System.out);
+			print.println(chs);
+			print.flush();
+			print.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
