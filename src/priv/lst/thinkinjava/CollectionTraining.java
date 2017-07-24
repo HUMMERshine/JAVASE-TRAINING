@@ -106,6 +106,7 @@ public class CollectionTraining {
 	}
 	
 	public static void map(){
+		new LinkedHashMap<>();
 		HashMap<String, String> map = new HashMap<>();
 		map.put("aaa", "111");
 		map.put("bbb", "222");

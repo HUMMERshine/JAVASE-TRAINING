@@ -56,7 +56,6 @@ public class ReflectTraining {
 			
 			System.out.println(List.class.getClassLoader());//null
 			
-			
 			int[] temp = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 			Class<?> arr = temp.getClass().getComponentType();
 	        Object newArr = Array.newInstance(arr, 20);

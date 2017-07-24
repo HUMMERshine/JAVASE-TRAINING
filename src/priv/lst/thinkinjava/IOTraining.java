@@ -7,6 +7,9 @@ import java.util.Scanner;
 import org.junit.Test;
 
 public class IOTraining {
+	//private String path = "/Users/lishutao/Document";
+	private String path = "/Users/lst-bytedance/Documents/";
+
 	public static void main(String[] args) {
 		byte b = 127;
 		int b2 = b;
@@ -22,6 +25,9 @@ public class IOTraining {
 			int result;
 			while ((result = isr.read()) != -1) {
 				System.out.println(result);
+				/*
+				 * 注意回车。
+				 */
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -34,11 +40,14 @@ public class IOTraining {
 	 */
 	@Test
 	public void dataOutPut() {
-		File list = new File(".");
+		File list = new File(path);
 		for (String string : list.list()) {
 			System.out.println(string);
+			if (new File(path+string).isDirectory()) {
+				System.out.println(string + " is a dir!");
+			}
 		}
-		File file = new File("/Users/lishutao/a.txt");
+		File file = new File(path + "a.txt");
 		try {
 			DataOutputStream outputStream = new DataOutputStream(new FileOutputStream(file));
 			outputStream.writeUTF("hello");
@@ -66,7 +75,7 @@ public class IOTraining {
 	@Test
 	public void BufferedInputFile() {
 		try {
-			BufferedReader in = new BufferedReader(new FileReader("/Users/lishutao/Documents/a.txt"));
+			BufferedReader in = new BufferedReader(new FileReader(path+"a.txt"));
 			String s;
 			StringBuilder sb = new StringBuilder();
 			while ((s = in.readLine()) != null) {
@@ -74,6 +83,11 @@ public class IOTraining {
 			}
 			in.close();
 			System.out.println(sb.toString());
+			
+			BufferedInputStream bis = new BufferedInputStream(new FileInputStream(path + "a.txt"));
+			byte [] bs = new byte[1024];
+			System.out.println(bis.read(bs));
+			System.out.println(new String(bs, "GBK"));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -88,7 +102,7 @@ public class IOTraining {
 		String s1 = "hello world 中国禹州";
 		System.out.println();
 		try {
-			BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream("/Users/lishutao/Documents/a.txt"), "GBK"));
+			BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(path + "a.txt"), "GBK"));
 			String s;
 			StringBuilder sb = new StringBuilder();
 			while ((s = in.readLine()) != null) {
@@ -98,7 +112,7 @@ public class IOTraining {
 			
 			System.out.println(sb.toString());
 			
-			FileOutputStream out = new FileOutputStream("/Users/lishutao/Documents/b.txt");
+			FileOutputStream out = new FileOutputStream(path+"b.txt");
 			OutputStreamWriter ow = new OutputStreamWriter(out, "utf-8");
 			BufferedWriter bw = new BufferedWriter(ow);
 			bw.write(sb.toString() + s1);
@@ -106,6 +120,19 @@ public class IOTraining {
 			ow.close();
 			out.close();
 			} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void StringReader(){
+		StringReader sr = new StringReader("hello world!");
+		try {
+			char [] chs = new char[100];
+			System.out.println(sr.read(chs));
+			System.out.println(chs);
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
