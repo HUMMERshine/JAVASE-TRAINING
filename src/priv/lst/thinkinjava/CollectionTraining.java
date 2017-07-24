@@ -83,6 +83,15 @@ public class CollectionTraining {
 		Collections.addAll(set, 1, 2, 3, 4, 5);
 		PPrint.pprint(set);
 		
+		/*
+		 * 遍历只能用iterator
+		 */
+		Iterator<Integer> iterator = set.iterator();
+		while (iterator.hasNext()){
+			int value = iterator.next();
+			System.out.println("set : " + value);
+		}
+		
 		HashSet<Integer> set2 = new HashSet<>();
 		Collections.addAll(set2, 2, 3, 4);
 		

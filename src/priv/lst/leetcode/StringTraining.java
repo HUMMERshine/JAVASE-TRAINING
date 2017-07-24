@@ -9,21 +9,10 @@ import java.util.Queue;
 
 import org.junit.Test;
 
+import priv.lst.thinkinjava.StringTraining;
+
 public class StringTraining {
 	public static void main(String[] args) throws UnsupportedEncodingException {
-		String s3 = "Hello world 中国";
-		System.out.println(new String(s3.getBytes("GBK"), "iso-8859-1"));
-		String s1 = "ab" + "cd";
-		String s2 = "abcd";
-		System.out.println(s1 == s2);
-		String str6 = "b";
-		String str7 = "a" + str6;
-		String str67 = "ab";
-		System.out.println("str7 = str67 : " + (str7 == str67));
-		final String str8 = "b";
-		String str9 = "a" + str8;
-		String str89 = "ab";
-		System.out.println("str9 = str89 : " + (str9 == str89));
 		new StringTraining().compareVersion("1", "0");
 	}
 
