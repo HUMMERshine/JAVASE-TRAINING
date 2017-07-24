@@ -20,7 +20,7 @@ public class SocketTraining {
 	public static void main(String[] args) {
 		try {
 			ServerSocket server = new ServerSocket(44443);
-			// System.out.println(InetAddress.getLocalHost().getHostAddress());
+			System.out.println("本地地址是：" + InetAddress.getLocalHost().getHostAddress());
 			new Thread(new Client()).start();
 			
 			int count = 0;
