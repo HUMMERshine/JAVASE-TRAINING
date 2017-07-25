@@ -5,6 +5,9 @@ enum Spiciness{
 	
 	private int code;
 	
+	/*
+	 * 构造函数必须是私有的。
+	 */
 	private Spiciness(int _code){
 		this.code = _code;
 		System.out.println("i am " + code);
@@ -13,7 +16,6 @@ enum Spiciness{
 	@Override
 	public String toString(){
 		return String.valueOf("String " + this.code);
-		
 	}
 }
 
@@ -21,7 +23,7 @@ public class EnumTraining{
 	public static void main(String[] args) {
 		System.out.println(Child.x);//通过子类调用父类的静态变量和方法不会造成子类初始化
 		Spiciness hotHot = Spiciness.HOT;
-		System.out.println(Spiciness.values());
+		System.out.println(Spiciness.values()); //枚举数组
 		for(Spiciness sp : Spiciness.values()){
 			System.out.println(sp.name() + " " + sp.ordinal() + " " + sp + " " + sp.compareTo(hotHot));
 		}
@@ -29,9 +31,6 @@ public class EnumTraining{
 		System.out.println(Enum.valueOf(Spiciness.class, "HOT"));
 	}
 }
-
-
-
 
 class Father{
 	public static int x = 5;

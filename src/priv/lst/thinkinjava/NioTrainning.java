@@ -6,12 +6,16 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
+import java.nio.CharBuffer;
 import java.nio.IntBuffer;
 import java.nio.channels.FileChannel;
 
 import org.junit.Test;
 
 public class NioTrainning {
+	//private String path = "/Users/lishutao/";
+	private static String path = "/Users/lst-bytedance/";
+	
 	public static void main(String[] args) {
 		intBuffer();
 		try {
@@ -26,7 +30,7 @@ public class NioTrainning {
 	@Test
 	public void byteBuffer() {
 		try {
-			RandomAccessFile aFile = new RandomAccessFile("/Users/lishutao/code/java/test.txt", "rw");
+			RandomAccessFile aFile = new RandomAccessFile(path + "code/java/test.txt", "rw");
 			FileChannel inChannel = aFile.getChannel();
 
 			ByteBuffer buf = ByteBuffer.allocate(1024);
@@ -38,22 +42,26 @@ public class NioTrainning {
 				buf.flip();
 				System.out.println(buf.limit());// 文本中的字符类型是一个字节的。
 				while (buf.hasRemaining()) {
-					System.out.print((char) buf.get());
+					System.out.println((char) buf.get());
 				}
 
-				buf.clear();
+				System.out.println("position:" + buf.position());
+				System.out.println("limit:" + buf.limit());
+				buf.compact();
 				bytesRead = inChannel.read(buf);
 			}
 			aFile.close();
 			
-			RandomAccessFile bFile = new RandomAccessFile("/Users/lishutao/code/java/test.txt", "rw");
+			RandomAccessFile bFile = new RandomAccessFile(path + "code/java/test.txt", "rw");
 			FileChannel outChannel = bFile.getChannel();
 			//bFile.seek(bFile.length());从文件末尾开始写
 			//PrintWriter（filename，true）构造器的第二个值也是从末尾写数据。
 
-			buf.clear();
+			System.out.println("position:" + buf.position());
+			System.out.println("limit:" + buf.limit());
+			
 			for(int i = 0; i < 10; i++){
-				buf.put((byte)('a' + i));
+				buf.put((byte)('a' + i)); //'a'是两个字节的，进行强制转型来变为字节型。
 			}
 			
 			buf.flip();
@@ -70,17 +78,38 @@ public class NioTrainning {
 		ByteBuffer bb = ByteBuffer.allocate(1024);
 		IntBuffer ib = bb.asIntBuffer();// bb 和 ib共同操作这1024个字节空间。
 		ib.put(new int[] { 1, 4, 6, 8, 10 });
+		
+		System.out.print("bb position:" + bb.position());
+		System.out.print("bb limit:" + bb.limit());
+		System.out.println("bb capacity:" + bb.capacity());
+		System.out.print("ib position:" + ib.position());
+		System.out.print("ib limit:" + ib.limit());
+		System.out.println("ib capacity:" + ib.capacity());
 
-		System.out.println(" " + bb.position() + " " + ib.position() + " " + bb.limit() + " " + ib.limit() + " "
-				+ bb.capacity() + " " + ib.capacity());
 		bb.rewind();
 		// bb.filp(); 如果使用该方法，bb的posion变为0，limit变为0.也即清空了该bb。但是数据仍然在bb内。
-		System.out.println(" " + bb.position() + " " + ib.position() + " " + bb.limit() + " " + ib.limit() + " "
-				+ bb.capacity() + " " + ib.capacity());
+		
+		System.out.print("bb position:" + bb.position());
+		System.out.print("bb limit:" + bb.limit());
+		System.out.println("bb capacity:" + bb.capacity());
+		System.out.print("ib position:" + ib.position());
+		System.out.print("ib limit:" + ib.limit());
+		System.out.println("ib capacity:" + ib.capacity());
+		
 		ib.flip();// ib可以使用flip，因为ib执行了put操作position已经变成了5.bb的position不会变。
-		System.out.println(" " + bb.position() + " " + ib.position() + " " + bb.limit() + " " + ib.limit() + " "
-				+ bb.capacity() + " " + ib.capacity());
+		
+		System.out.print("bb position:" + bb.position());
+		System.out.print("bb limit:" + bb.limit());
+		System.out.println("bb capacity:" + bb.capacity());
+		System.out.print("ib position:" + ib.position());
+		System.out.print("ib limit:" + ib.limit());
+		System.out.println("ib capacity:" + ib.capacity());
+		
+		System.out.println(ib.position());
+		System.out.println(ib.get());
 		System.out.println(ib.get(0));
+		System.out.println(ib.get());
+		System.out.println(ib.position());
 		System.out.println(bb.getInt());
 	}
 
@@ -108,7 +137,7 @@ public class NioTrainning {
 	}
 
 	public static void program() throws IOException {
-		FileInputStream fin = new FileInputStream("/Users/lishutao/code/java/HelloWorld.java");
+		FileInputStream fin = new FileInputStream(path + "code/java/HelloWorld.java");
 
 		BufferedInputStream bufferStream = new BufferedInputStream(fin);
 		byte[] b = new byte[1024];
@@ -119,7 +148,7 @@ public class NioTrainning {
 		System.out.println("************");
 		fin.close();
 		// 创建缓冲区
-		FileInputStream fins = new FileInputStream("/Users/lishutao/code/java/HelloWorld.java");
+		FileInputStream fins = new FileInputStream(path + "code/java/HelloWorld.java");
 		// 获取通道
 		FileChannel fc = fins.getChannel();
 		ByteBuffer buffer = ByteBuffer.allocate(1024);
@@ -144,7 +173,7 @@ public class NioTrainning {
 		}
 		buffer.flip();
 		System.out.println("\n------------");// 直接将输入通道与输出通道对接。
-		FileChannel out = new FileOutputStream("/Users/lishutao/logs/a.txt").getChannel();
+		FileChannel out = new FileOutputStream(path + "logs/a.txt").getChannel();
 		System.out.println("out size is :" + out.size());
 		fc.transferTo(0, fc.size(), out);
 		System.out.println("out2 size is :" + out.size());
@@ -152,7 +181,7 @@ public class NioTrainning {
 		/*
 		 * 追加的方式向channel内写入数据。
 		 */
-		FileChannel out2 = new FileOutputStream("/Users/lishutao/logs/a.txt", true).getChannel();
+		FileChannel out2 = new FileOutputStream(path + "logs/a.txt", true).getChannel();
 		fc.transferTo(0, fc.size(), out2);
 		fins.close();
 
@@ -165,5 +194,20 @@ public class NioTrainning {
 			System.out.println(cc + " ");
 		}
 		System.out.println(bb.position());
+		
+		bb.clear();
+		bb = bb.wrap(new byte[]{1, 2, 3, 4});
+		System.out.println(bb.position() + " " + bb.capacity());
+		bb.flip();
+		out2.write(bb);
+		bb.clear();
+		CharBuffer cb = CharBuffer.wrap(new char[]{'1', '2', '3'});
+		System.out.println(cb.position() + " " + cb.capacity());
+		bb.flip();
+		out2.write(bb);
+		out2.close();
+		
+		ByteBuffer bookBuf = ByteBuffer.wrap("java性能优化技巧".getBytes("utf-8"));
+		System.out.println(bookBuf.position() + " " + bookBuf.limit() + " " + bookBuf.capacity());
 	}
 }

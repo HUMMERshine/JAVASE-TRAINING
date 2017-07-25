@@ -7,8 +7,8 @@ import java.util.Scanner;
 import org.junit.Test;
 
 public class IOTraining {
-	private String path = "/Users/lishutao/Document/";
-	//private String path = "/Users/lst-bytedance/Documents/";
+	//private String path = "/Users/lishutao/Document/";
+	private String path = "/Users/lst-bytedance/Documents/";
 
 	public static void main(String[] args) {
 		byte b = 127;
@@ -146,5 +146,23 @@ public class IOTraining {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	@Test
+	public void inputStream(){
+		try {
+			FileInputStream fin = new FileInputStream(path + "a.txt");
+			byte [] bs = new byte[1024];
+			int len = fin.read(bs);
+			System.out.println(len);
+			for(int i = 0; i < len; i++){
+				System.out.println(bs[i] + " " + (char)bs[i]);
+			}
+			fin.close();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 }
