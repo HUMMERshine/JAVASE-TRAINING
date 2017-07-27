@@ -31,6 +31,7 @@ public class MultiSleep {
 				job2.run();
 				if (Thread.interrupted()) {
 					System.out.println("Interrupted in job2. Stop.");
+					//return; 如果把改return注释掉，那么程序会继续运行，thread的中断状态不变
 					return;
 				}
 				job3.run();

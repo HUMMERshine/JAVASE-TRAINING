@@ -102,7 +102,7 @@ class Buffer {
 				System.out.printf("%s: Line Reader: %d\n",
 						Thread.currentThread().getName(), buffer.size());
 				space.signalAll();
-				lines.signalAll();
+				//lines.signalAll();
 			}
 		} catch (InterruptedException e) {
 			// TODO: handle exception

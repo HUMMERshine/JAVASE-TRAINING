@@ -11,7 +11,7 @@ public class CounterRight {
 						i++;
 						Thread.sleep(1000);// 正确的做法是停止运行
 					}
-				} catch (InterruptedException e) {
+				} catch (Exception e) {
 					System.out.println("Counter interrupted. Stop.");
 					// Thread.currentThread().interrupt();
 					// I know it is the whole job, so no need to re-set the
