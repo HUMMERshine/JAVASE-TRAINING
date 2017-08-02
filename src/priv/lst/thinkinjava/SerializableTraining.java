@@ -21,12 +21,14 @@ public class SerializableTraining implements Serializable {
 	 */
 	private final static long serialVersionUID = 1L;
 
+	//private String i;
 	private int i;
 	private String s;
 	private final int val = 2;
-	private static String tt;
+	private static String tt; //静态成员不可以序列化
 
 	public SerializableTraining(int i, String s) {
+		//this.i = new Integer(i).toString();
 		this.i = i;
 		this.s = s;
 		System.out.println("this is constructor!");
