@@ -13,6 +13,10 @@ enum Spiciness{
 		System.out.println("i am " + code);
 	}
 	
+	public int getCode(){
+		return this.code;
+	}
+	
 	@Override
 	public String toString(){
 		return String.valueOf("String " + this.code);
@@ -29,6 +33,7 @@ public class EnumTraining{
 		}
 		System.out.println(hotHot.name());
 		System.out.println(Enum.valueOf(Spiciness.class, "HOT"));
+		System.out.println(Spiciness.HOT.getCode());
 	}
 }
 
