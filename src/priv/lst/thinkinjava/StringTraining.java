@@ -11,6 +11,8 @@ public class StringTraining {
 		String str4 = "abcd";
 		final String str5 = "cd";
 		String str61 = "ab" + str5;
+		String sss = "abc|abc";
+		System.out.println(sss.split("\\|")[0]);
 		
 		System.out.println(str == str4);
 		System.out.println(str3 == str4);
