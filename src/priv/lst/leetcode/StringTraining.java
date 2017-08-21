@@ -9,8 +9,6 @@ import java.util.Queue;
 
 import org.junit.Test;
 
-import priv.lst.thinkinjava.StringTraining;
-
 public class StringTraining {
 	public static void main(String[] args) throws UnsupportedEncodingException {
 		new StringTraining().compareVersion("1", "0");

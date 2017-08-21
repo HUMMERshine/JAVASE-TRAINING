@@ -10,7 +10,8 @@ public class SortTraining {
 		//bubbleSort(array);
 		//insertSort(array);
 		//fastSort(array, 0, array.length - 1);
-		heapSort(array2);
+		//heapSort(array2);
+		shellSort(array2);
 		System.out.println(Arrays.toString(array2));
 	}
 	
@@ -113,5 +114,18 @@ public class SortTraining {
 		int temp = array[x];
 		array[x] = array[y];
 		array[y] = temp;
+	}
+	
+	public static void shellSort(int [] array){
+		int h = 1;
+		int n = array.length;
+		for(int i = h; i < n; i=i+h){
+			int value = array[i];
+			int j = i - 1;
+			for(; j >= 0 && value < array[j]; j = j - h){
+				array[j + h] = array[j];
+			}
+			array[j+h] = value;
+		}
 	}
 }
