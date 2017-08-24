@@ -79,24 +79,7 @@ public class BinaryTree {
 		}
 
 	}
-
-	protected static void inorder1(TreeNode p) {
-		Stack<TreeNode> stack = new Stack<TreeNode>();
-
-		while (p != null || !stack.isEmpty()) {
-			while (p != null) {
-				stack.push(p);
-				p = p.getLeft();
-			}
-
-			if (!stack.isEmpty()) {
-				p = stack.pop();// 左子树已经全被访问过，就出栈。
-				visit(p);
-				p = p.getRight();
-			}
-		}
-	}
-
+	
 	protected static void preorder2(TreeNode p) {
 		Stack<TreeNode> stack = new Stack<TreeNode>();
 
@@ -113,14 +96,30 @@ public class BinaryTree {
 				}
 			}
 		}
-
 	}
-
+	
 	protected static void inorder(TreeNode p) {
 		if (p != null) {
 			inorder(p.getLeft());
 			visit(p);
 			inorder(p.getRight());
+		}
+	}
+	
+	protected static void inorder1(TreeNode p) {
+		Stack<TreeNode> stack = new Stack<TreeNode>();
+
+		while (p != null || !stack.isEmpty()) {
+			while (p != null) {
+				stack.push(p);
+				p = p.getLeft();
+			}
+
+			if (!stack.isEmpty()) {
+				p = stack.pop();// 左子树已经全被访问过，就出栈。
+				visit(p);
+				p = p.getRight();
+			}
 		}
 	}
 
