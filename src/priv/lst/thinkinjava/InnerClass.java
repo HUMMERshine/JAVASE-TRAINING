@@ -15,6 +15,7 @@ public class InnerClass {
         return new Inner();
     }
     public void showIt(){
+    	//this.new Inner().show();
     	new Inner().show();
     }
     public static void main(String[] args){
