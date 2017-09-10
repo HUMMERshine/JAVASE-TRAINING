@@ -9,7 +9,11 @@ public class ArrayTraining {
 		Integer [] arrays;
 		arrays = new Integer[]{new Integer(1), new Integer(2)};
 		Integer [] arrays2 = null;
-		//arrays2 = {new Integer(1), new Integer(2)};
+		/*
+		 * arrays2 = {new Integer(1), new Integer(2)};
+		 * 该句报错，因为{}这种形式只能在定义数组时使用。
+		 * 如下array3
+		 */
 		Integer [] arrays3 = {new Integer(1), new Integer(2)};
 		Integer [] arrays4 = null;
 		System.out.println(arrays);

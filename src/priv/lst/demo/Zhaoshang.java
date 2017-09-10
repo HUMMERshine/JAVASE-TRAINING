@@ -3,9 +3,7 @@ package priv.lst.demo;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class WangYI {
-
-	private static String s;
+public class Zhaoshang implements Runnable{
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		s = sc.nextLine();
@@ -38,54 +36,41 @@ public class WangYI {
 			}
 		}
 
-		System.out.println(max);
+		System.out.println(addBlodTag);
 	}
 
-	public static int compute(char[] str1, char[] str2) {
-		int substringLength1 = str1.length;
-		int substringLength2 = str2.length;
-
-		int[][] opt = new int[substringLength1 + 1][substringLength2 + 1];
-
-		for (int i = substringLength1 - 1; i >= 0; i--) {
-			for (int j = substringLength2 - 1; j >= 0; j--) {
-				if (str1[i] == str2[j])
-					opt[i][j] = opt[i + 1][j + 1] + 1;// 状态转移方程
-				else
-					opt[i][j] = Math.max(opt[i + 1][j], opt[i][j + 1]);// 状态转移方程
+	public String addBlodTag(String s, String[] dict) {
+		int begin = 0, end = 0;
+		StringBuilder sb = new StringBuilder();
+		boolean flag = false;
+		for(int i = 0; i < s.length(); i++){
+			
+			if(i > end && flag){
+				sb.append("<b>");
+				sb.append(s.substring(begin, end + 1));
+				sb.append("</b>");
+				flag = false;
+				begin = i;
+				end = i;
 			}
+			
+			for(int j = 0; j < dict.length; j++){
+				if(s.length() - i >= dict[j].length() && s.substring(i, i + dict[j].length()).equals(dict[j])){
+					if(i + dict[j].length() - 1 > end){
+						end = i + dict[j].length() - 1;
+					}
+					flag = true;
+				}
+			}
+			if(!flag){
+				sb.append(i);
+				begin = i + 1;
+				end = i + 1;
+			}
+			
 		}
-
-		int i = 0, j = 0;
-		while (i < substringLength1 && j < substringLength2) {
-			if (str1[i] == str2[j]) {
-				i++;
-				j++;
-			} else if (opt[i + 1][j] >= opt[i][j + 1])
-				i++;
-			else
-				j++;
-		}
-		return opt[0][0];
-	}
-
-	public static void printParenthesis(int pos, int n, int open, int close, char[] buffer, ArrayList<String> list) {
-		if (close == n) {
-			if(!s.equals(new String(buffer)))
-				list.add(new String(buffer));
-			return;
-		}
-		if (open > close) {
-			buffer[pos] = ')';
-			printParenthesis(pos + 1, n, open, close + 1, buffer, list);
-
-		}
-
-		if (open < n) {
-			buffer[pos] = '(';
-			printParenthesis(pos + 1, n, open + 1, close, buffer, list);
-		}
-
+		
+		return sb.toString();
 	}
 
 	/*

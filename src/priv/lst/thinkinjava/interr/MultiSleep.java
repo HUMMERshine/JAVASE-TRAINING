@@ -2,7 +2,7 @@ package priv.lst.thinkinjava.interr;
 
 class SleepJob implements Runnable {
 	@Override
-	public void run() {//run 方法不可以抛出异常，因为父类或者接口Runnabl的run方法没有抛出异常。
+	public void run() {//run 方法不可以抛出异常，因为父类或者接口Runnable的run方法没有抛出异常。
 		try {
 			System.out.println("Started sleeping.");
 			Thread.sleep(1000);

@@ -10,13 +10,27 @@ class runnable implements Runnable {
 	}
 }
 
+class callable implements Callable<String> {
+	@Override
+	public String call() {
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(Thread.currentThread().getName());
+		return "call";
+	}
+}
+
 public class ExecutorDemo {
 	public static void main(String[] args) {
 		System.out.println("main" + Thread.currentThread().getName());
 		ExecutorService service2 = Executors.newFixedThreadPool(1);
 		/*
 		 * newCacheThreadPool、newFixedThreadPool等方法，他们内部实际上都是new ThreadPoolExecutor();
-		 * 下例子中最后一个参数就是定义线程达到corePoolSize，并且队列也满了，而且数量也到达了MaxPoolSize
+		 * 下例子中最后一个参数就是定义线程达到corePoolSize，之后队列也满了，之后线程数量也到达了MaxPoolSize
 		 * 又有线程到来时的策略---->抛回给main线程（调用的线程）去处理。
 		 * 使用ThreadPoolExecutetor的静态内部类来实现。
 		 */
@@ -71,7 +85,7 @@ public class ExecutorDemo {
 		 */
 		service.execute(ft);
 		try {
-			System.out.println(ft.get(10, TimeUnit.SECONDS));
+			System.out.println("ft    " + ft.get(10, TimeUnit.SECONDS));
 		} catch (InterruptedException | ExecutionException | TimeoutException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -96,17 +110,17 @@ public class ExecutorDemo {
 		});
 		try {
 			
-			service.execute(new runnable());
-			service.execute(new runnable());
-			service.execute(new runnable());
+			service2.submit(new callable());
+			service2.submit(new callable());
+			service2.submit(new callable());
 
-			service.shutdown();
-			if(service.awaitTermination(1, TimeUnit.SECONDS)){
-				System.out.println("close it!");
-			}
+//			service.shutdown();
+//			if(service.awaitTermination(1, TimeUnit.SECONDS)){
+//				System.out.println("close it!");
+//			}
 			
-			//List<Runnable> list = service.shutdownNow();// 立即中断所有线程,并返回等待队列里的所有线程
-			//System.out.println(list);
+			List<Runnable> list = service2.shutdownNow();// 立即中断所有线程,并返回等待队列里的所有线程
+			System.out.println("list" + list);
 			System.out.println(future.get());
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
