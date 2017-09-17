@@ -57,7 +57,16 @@ public class CollectionTraining {
 		
 		Iterator<Integer> it = list.iterator();
 		ListIterator<Integer> iterator = list.listIterator();
+		System.out.println(list);
 		while(iterator.hasNext()){
+			System.out.println("*" + iterator.nextIndex() + iterator.next());
+		}
+		while(iterator.hasPrevious()){
+			System.out.println("*" + iterator.previousIndex() + iterator.previous());
+		}
+		
+		while(iterator.hasNext()){
+			iterator.add(-1);
 			System.out.println("*" + iterator.nextIndex() + iterator.next());
 		}
 		while(iterator.hasPrevious()){

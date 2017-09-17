@@ -1,42 +1,78 @@
+package priv.lst.demo;
+
+import java.util.Arrays;
+import java.util.Date;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Random;
 import java.util.Scanner;
 
+import org.junit.Test;
+
+class A{
+	
+}
+class B extends A{
+	
+}
+class C extends A{
+	
+}
 public class Main {
 
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        int n = scanner.nextInt();
-        int[] array = new int[n];
-        long min = Long.MAX_VALUE;
-        for (int i = 0; i <= n - 1; i++) {
-            array[i] = scanner.nextInt();
-        }
+	private static int res = 0;
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		
+		long n = scanner.nextInt();
+		
+		backtrace(1, 0, n);
+		System.out.println(res);
+	}
+	
+	public static void backtrace(long index, long sum, long n){
+		if(sum == n){
+			res++;
+			return;
+		}
+		if(sum > n || index > n) return;
+		
+		backtrace(index * 2, sum, n);
+		backtrace(index * 2, sum + index, n);
+		backtrace(index * 2, sum + index * 2, n);
+	}
 
-        for (int i = 0; i <= n - 1; i++) {
-            long value1 = 0, value2 = 0;
-            int sep = array[i];
-            int value1_pre = -1, value2_pre = -1;
-            for (int num : array) {
-                if (num <= sep) {
-                    if (value1_pre == -1) {
-                        value1_pre = num;
-                    } else {
-                        value1 += Math.abs(num - value1_pre);
-                        value1_pre = num;
-                    }
-                } else {
-                    if (value2_pre == -1) {
-                        value2_pre = num;
-                    } else {
-                        value2 += Math.abs(num - value2_pre);
-                        value2_pre = num;
-                    }
-                }
-            }
-            min = Math.min(value1 + value2, min);
-        }
-
-        System.out.println(min);
-    }
-
+	@Test
+	public static void calculate() {
+		int [] persons = new int[10];
+		Random random = new Random();
+		long time = System.currentTimeMillis();
+		if(System.currentTimeMillis() - time < 45000){
+			Thread.sleep(1000);
+		}
+		
+		int i = 0;
+		while(i < 100000000){
+			persons[random.nextInt(10)]++;
+			
+			if(System.currentTimeMillis() - time < 45000){
+				Thread.sleep(1000);
+			}
+			
+			if(i % 100000 == 0){
+				try {
+					Thread.sleep(1);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			i++;
+		}
+		
+		
+		
+		
+	}
 
 }

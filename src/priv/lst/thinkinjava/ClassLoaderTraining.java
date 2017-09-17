@@ -42,20 +42,28 @@ protected synchronized Class<?> loadClass(String name, boolean resolve)throws Cl
     }
  */
 public class ClassLoaderTraining extends ClassLoader{
+	/*
+	 * 定义父类构造器
+	 */
+	public ClassLoaderTraining(ClassLoader parent){
+		super(parent);
+	}
+	
 	public static void main(String[] args) {
         ClassLoader loader = Thread.currentThread().getContextClassLoader();
-        System.out.println(loader);
+        System.out.println("Training 的 loader:" + loader);
         System.out.println(loader.getParent());
         System.out.println(loader.getParent().getParent());
         
-        ClassLoaderTraining classLoader = new ClassLoaderTraining();
-        classLoader.setRoot("/Users/lst-bytedance/code");
+        ClassLoaderTraining classLoader = new ClassLoaderTraining(loader);
+        classLoader.setRoot("/Users/lishutao/code/java");
  
         Class<?> testClass = null;
         try {
-            testClass = classLoader.loadClass("Hello");
+            testClass = classLoader.loadClass("HelloWorld");
             Object object = testClass.newInstance();
-            System.out.println(object.getClass().getClassLoader());
+            System.out.println("HelloWorld.class 的 loader:"+object.getClass().getClassLoader());
+            System.out.println("HelloWorld.class 的 loader 的父类:"+object.getClass().getClassLoader().getParent());
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (InstantiationException e) {

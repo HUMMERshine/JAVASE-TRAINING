@@ -14,8 +14,14 @@ public class SinglePattern implements Serializable {
 	/*
 	 * 静态内部类，在成员被使用时才会加载和初始化。
 	 */
+	public static void main(String[] args) {
+		System.out.println("world");
+	}
 	private static class SingletonClassInstance {
 		private static final SinglePattern instance = new SinglePattern();
+		static{
+			System.out.println("hello");
+		}
 	}
 
 	// 方法没有同步，调用效率高

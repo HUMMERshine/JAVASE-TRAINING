@@ -7,8 +7,8 @@ import java.util.Scanner;
 import org.junit.Test;
 
 public class IOTraining {
-	//private String path = "/Users/lishutao/Document/";
-	private String path = "/Users/lst-bytedance/Documents/";
+	private String path = "/Users/lishutao/Document/";
+	//private String path = "/Users/lst-bytedance/Documents/";
 
 	public static void main(String[] args) {
 		byte b = 127;

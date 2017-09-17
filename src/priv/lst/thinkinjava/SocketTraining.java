@@ -24,9 +24,8 @@ public class SocketTraining {
 			System.out.println("本地地址是：" + InetAddress.getLocalHost().getHostAddress());
 			new Thread(new Client()).start();
 			
-			int count = 0;
 			while (true) {
-				count++;
+				int count = 0;
 				Socket socket = server.accept();
 				Thread.sleep(3000);
 				System.out.println(socket.getInetAddress() + " one socket come in!");
@@ -34,7 +33,10 @@ public class SocketTraining {
 				// PrintStream print = new PrintStream(output);
 				DataOutputStream print = new DataOutputStream(output);
 				// print.write(("hello world" + count).getBytes("UTF-8"));
-				print.write(("hello world你好" + count).getBytes("GBK"));
+				while(count != 10){
+					print.write(("hello world你好" + count++).getBytes("GBK"));
+					Thread.sleep(100);
+				}
 				// print.flush();
 				print.close();
 			}

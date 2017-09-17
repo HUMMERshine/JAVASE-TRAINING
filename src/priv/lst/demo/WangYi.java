@@ -1,11 +1,64 @@
 package priv.lst.demo;
 
-import java.util.ArrayList;
+
 import java.util.Scanner;
 
-public class WangYI {
+public class WangYi {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int n = Integer.parseInt(sc.nextLine());
+	}
+	/*public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int n = Integer.parseInt(sc.nextLine());
+		int [] array = new int[16];
+		array[0] = 26;
+		int num = 26;
+		for(int i = 1; i < 16; i++){
+			num--;
+			array[i] = array[i] * num;
+		}
+		for(int i = 1; i < 16; i++){
+			array[i] += array[i-1];
+		}
+		
+		
+		while(n > 0){
+			String s = sc.nextLine();
+			int len = s.length();
+			
+			int res = 0;
+			int start = 0;
+			for(int i = 0; i < s.length(); i++){
+				char ch = s.charAt(i);
+				int index = ch - 'a';
+				res += getNum(start , index, len - i);
+				start = start < index ? index : start;
+			}
+			if(len > 1){
+				res += array[len - 1];
+				System.out.println(res);
+			}else{
+				System.out.println(s.charAt(0) - 'a' + 1);
+			}
+			n--;
+		}
+		
+	}
+	public static int getNum(int start, int end, int len){
+		if(len == 1) return end - start;
+		int sum = 0;
+		start++;
+		for(;start < end;start++){
+			int temp = start;
+			for(int i = 0; i < len; i++){
+			}
+		}
+		
+		return sum;
+	}*/
 
-	private static String s;
+	/*private static String s;
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		s = sc.nextLine();
@@ -86,7 +139,7 @@ public class WangYI {
 			printParenthesis(pos + 1, n, open + 1, close, buffer, list);
 		}
 
-	}
+	}*/
 
 	/*
 	 * public static void main(String[] args) { Scanner sc = new
