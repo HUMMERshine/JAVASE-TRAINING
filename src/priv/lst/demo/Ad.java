@@ -1,4 +1,6 @@
-public class LongestCommonSubstring {
+package priv.lst.demo;
+
+public class Ad {
 	public static int compute(char[] str1, char[] str2) {
 		int size1 = str1.length;
 		int size2 = str2.length;

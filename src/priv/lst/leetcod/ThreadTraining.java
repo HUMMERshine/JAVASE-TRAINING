@@ -1,4 +1,4 @@
-package priv.lst.leetcode;
+package priv.lst.leetcod;
 
 public class ThreadTraining {
 	public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package priv.lst.leetcode;
+package priv.lst.leetcod;
 
 import java.util.Arrays;
 import java.util.Random;
@@ -11,9 +11,9 @@ public class SortTraining {
 			shuffle(array2);
 			//bubbleSort(array2);
 			//insertSort(array);
-			//fastSort(array, 0, array.length - 1);
+			fastSort(array, 0, array.length - 1);
 			//heapSort(array2);
-			shellSort(array2);
+			//shellSort(array2);
 			//bubbleSort_fast(array2);
 			System.out.println(Arrays.toString(array2));
 		}

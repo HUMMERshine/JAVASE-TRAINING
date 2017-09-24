@@ -6,7 +6,27 @@ import java.util.Collection;
 import java.util.List;
 
 import sun.org.mozilla.javascript.internal.ast.ThrowStatement;
-
+class Fathers{
+	public Fathers(){
+		Print();
+	}
+	
+	public void Print(){
+		System.out.println("this is Father");
+	}
+	
+	public ArrayList testReturn(){
+		return new ArrayList<>();
+	}
+	
+	public void testException() throws IOException{
+		
+	}
+	
+	public void testAuthority(){
+		
+	}
+ }
 /**
  * 当子类和父类都有同一个函数时，如果子类构造器或父类构造器内调用该函数的话优先调用子类的函数。
  * @author lst-bytedance
@@ -56,24 +76,3 @@ public class ExtendsTraining extends Fathers{
 	}
 }
 
-class Fathers{
-	public Fathers(){
-		Print();
-	}
-	
-	public void Print(){
-		System.out.println("this is Father");
-	}
-	
-	public ArrayList testReturn(){
-		return new ArrayList<>();
-	}
-	
-	public void testException() throws IOException{
-		
-	}
-	
-	public void testAuthority(){
-		
-	}
- }

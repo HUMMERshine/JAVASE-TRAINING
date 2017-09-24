@@ -1,4 +1,4 @@
-package priv.lst.leetcode;
+package priv.lst.leetcod;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
