@@ -1,4 +1,4 @@
-package priv.lst.demo.redis;
+package priv.lst.arch.redis;
 
 
 
