@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-import com.sun.org.apache.xml.internal.resolver.readers.ExtendedXMLCatalogReader;
 
 public class LockTraining {
 	private ArrayList<Integer> arrayList = new ArrayList<Integer>();

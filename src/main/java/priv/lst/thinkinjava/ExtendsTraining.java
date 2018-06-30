@@ -2,10 +2,7 @@ package priv.lst.thinkinjava;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 
-import sun.org.mozilla.javascript.internal.ast.ThrowStatement;
 class Fathers{
 	public Fathers(){
 		Print();

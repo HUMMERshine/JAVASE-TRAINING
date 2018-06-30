@@ -8,11 +8,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.alibaba.fastjson.JSONArray;
 import org.junit.Before;
 import org.junit.Test;
 
 import net.mindview.util.Pair;
 import redis.clients.jedis.Jedis;
+
+import com.alibaba.fastjson.JSONObject;
 
 public class TestRedis {
     private Jedis jedis; 
@@ -204,7 +207,15 @@ public class TestRedis {
 		for (TestUser user : results) {
 			System.out.println(user.getName() + "\t" + user.getAge());
 		}
-		
+
+        String jsonList = JSONObject.toJSONString(lists);
+		jedis.set("jsonList", jsonList);
+		String jsonGetList = jedis.get("jsonList");
+//		List<TestUser> resultList = JSONObject.parseObject(jsonGetList, List.class);
+        List<TestUser> resultList = JSONArray.parseArray(jsonGetList, TestUser.class);
+        for (TestUser user : resultList) {
+            System.out.println(user.getName() + "\t" + user.getAge());
+        }
 	}
-	
+
 }
