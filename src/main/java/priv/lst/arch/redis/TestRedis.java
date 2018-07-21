@@ -7,6 +7,13 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 import com.alibaba.fastjson.JSONArray;
 import org.junit.Before;
@@ -16,14 +23,20 @@ import net.mindview.util.Pair;
 import redis.clients.jedis.Jedis;
 
 import com.alibaba.fastjson.JSONObject;
+import redis.clients.jedis.JedisPool;
+import redis.clients.jedis.JedisPoolConfig;
 
 public class TestRedis {
-    private Jedis jedis; 
+    private Jedis jedis;
+    JedisPool pool;
     
     @Before
     public void setup() {
         //连接redis服务器，192.168.0.100:6379
         jedis = new Jedis("127.0.0.1", 6379);
+        pool = new JedisPool(new JedisPoolConfig(), "localhost");
+        jedis = pool.getResource();
+//        pool.close();
         //权限认证
         //jedis.auth("admin");  
     }
@@ -217,5 +230,50 @@ public class TestRedis {
             System.out.println(user.getName() + "\t" + user.getAge());
         }
 	}
+
+    @Test
+    public void incrTest2() throws InterruptedException {
+        for (int i = 0; i < 10; i++) {
+            jedis.incr("incrNum");
+        }
+        System.out.println(jedis.get("incrNum"));
+
+    }
+
+    @Test
+    public void incrTest() throws InterruptedException {
+        /**
+         * 测试线程安全
+         */
+        jedis.del("incrNum");
+        final AtomicInteger atomicInteger = new AtomicInteger(0);
+        //final CountDownLatch countDownLatch = new CountDownLatch(10);
+        Lock lock=new ReentrantLock();
+        ExecutorService executorService = Executors.newFixedThreadPool(10);
+        for(int i = 0 ; i < 10 ; i ++){
+            executorService.submit(new Runnable() {
+                @Override
+                public void run() {
+                    System.out.println(Thread.currentThread().getName());
+                    //每个线程增加1000次，每次加1
+                    for(int j = 0 ; j < 1000 ; j ++){
+//                        atomicInteger.incrementAndGet();
+                        lock.lock();
+                        jedis.incr("incrNum");
+                        lock.unlock();
+                    }
+
+                    System.out.println(jedis.get("incrNum"));
+                   // countDownLatch.countDown();
+
+                }
+            });
+        }
+        Thread.sleep(5 * 1000);
+       // countDownLatch.await();
+        System.out.println(jedis.get("incrNum"));
+        System.out.println(atomicInteger);
+        //pool.close();
+    }
 
 }
