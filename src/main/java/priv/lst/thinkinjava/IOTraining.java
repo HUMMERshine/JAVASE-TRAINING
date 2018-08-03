@@ -176,4 +176,30 @@ public class IOTraining {
 		}
 		
 	}
+
+	@Test
+	public void outputStream(){
+		try {
+//			FileInputStream fin = new FileInputStream(path + "a.txt");
+			byte [] array = new byte[8];
+			array[0] = 1;
+			array[1] = 2;
+			byte [] array2 = new byte[8];
+			array2[0] = 1;
+			array2[1] = 2;
+			ByteArrayOutputStream bais = new ByteArrayOutputStream();
+			bais.write(array);
+			bais.write(array2);
+			byte [] result = bais.toByteArray();
+			System.out.println(result.length);
+			for (byte b : result) {
+				System.out.println(b);
+			}
+			bais.close();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
 }
