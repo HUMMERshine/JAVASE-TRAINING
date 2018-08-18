@@ -7,6 +7,7 @@ import priv.lst.domain.Person;
 import java.util.*;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
@@ -62,12 +63,18 @@ public class UserStream {
 
         HashMap<Integer, String> map3 = lists.stream().collect(Collectors.toMap(Person::getId, Person::getName, (oldvalue, newvalue) -> oldvalue + ", " + newvalue, LinkedHashMap::new));
 
+        lists.add(new Person(2, "tttt"));
+        HashMap<Integer, Person> map4 = lists.stream().collect(Collectors.toMap(Person::getId, person -> person, (oldvalue, newvalue) -> newvalue, LinkedHashMap::new));
+        HashMap<Integer, Person> map5 = lists.stream().collect(Collectors.toMap(Person::getId, Function.identity(), (oldvalue, newvalue) -> newvalue, LinkedHashMap::new));
+
         String filtered1 = features.stream().filter(x -> x.length()> 2)
             .collect(Collectors.joining(", "));
 
         System.out.println(map.getClass().getName() + map);
         System.out.println(map2.getClass().getName() + map2);
         System.out.println(map3.getClass().getName() + map3);
+        System.out.println(map3.getClass().getName() + map4);
+        System.out.println(map3.getClass().getName() + map5);
 
     }
 

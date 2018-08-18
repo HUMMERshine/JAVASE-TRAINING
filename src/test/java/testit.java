@@ -19,6 +19,11 @@ public class testit {
         test = test.replace("\n", ",");
 
         System.out.println(test);
+        System.out.println("\0");
+        char a = '\0';
+        System.out.println(a + " " + Integer.valueOf(a));
+        System.out.println('a' + " " + Integer.valueOf('a'));
+        System.out.println("\\0");
 //        System.out.println(hosts.replace("\n", ",\n"));
     }
 

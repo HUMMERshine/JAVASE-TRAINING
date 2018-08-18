@@ -26,7 +26,7 @@ import com.alibaba.fastjson.JSONObject;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
-public class TestRedis {
+public class RedisDemo {
     private Jedis jedis;
     JedisPool pool;
     
