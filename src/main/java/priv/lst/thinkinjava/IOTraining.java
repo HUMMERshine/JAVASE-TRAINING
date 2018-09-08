@@ -151,18 +151,55 @@ public class IOTraining {
 	@Test
 	public void inputStream(){
 		try {
-			FileInputStream fin = new FileInputStream(path + "a.txt");
+//			FileInputStream fin = new FileInputStream(path + "a.txt");
+			byte [] array = new byte[]{5, 4, 3, 2, 1};
+			ByteArrayInputStream bais = new ByteArrayInputStream(array);
 			byte [] bs = new byte[1024];
-			int len = fin.read(bs);
+			System.out.println(bais.available());
+			int len = bais.read();
+			System.out.println(bais.available());
+			System.out.println(Arrays.toString(bs));
 			System.out.println(len);
-			for(int i = 0; i < len; i++){
-				System.out.println(bs[i] + " " + (char)bs[i]);
-			}
-			fin.close();
+//			System.out.println(bs.length);
+//			while (len != -1) {
+//				len = bais.read(bs);
+//				System.out.println(len);
+//				System.out.println(bs.length);
+//			}
+//			for(int i = 0; i < len; i++){
+//				System.out.println(bs[i] + " " + (char)bs[i]);
+//			}
+			bais.close();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
+	}
+
+	@Test
+	public void outputStream(){
+		try {
+//			FileInputStream fin = new FileInputStream(path + "a.txt");
+			byte [] array = new byte[8];
+			array[0] = 1;
+			array[1] = 2;
+			byte [] array2 = new byte[8];
+			array2[0] = 1;
+			array2[1] = 2;
+			ByteArrayOutputStream bais = new ByteArrayOutputStream();
+			bais.write(array);
+			bais.write(array2);
+			byte [] result = bais.toByteArray();
+			System.out.println(result.length);
+			for (byte b : result) {
+				System.out.println(b);
+			}
+			bais.close();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 }

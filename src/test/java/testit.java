@@ -1,3 +1,6 @@
+
+import org.junit.Test;
+
 /**
  * Created by lishutao on 2018/6/15.
  *
@@ -7,374 +10,8 @@
 public class testit {
     public static void main(String[] args) {
 
-           String hosts = "haitao-customs-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-comment-compose-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "haitao-forwarder-system-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "pop-busischool-fed-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "bi-baitiao-open-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-activity-fed-nginx-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-etl-offline-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-gateway-compose-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "haitao-ipc-sfs-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-comment-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-resource-page-offline-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-mykaolams-web-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "encrypt-system-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-traderelated-compose-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "pop-shoperp-system-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "common-disconf-system-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "sc-qcf2c-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-act-web-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "common-assistsearch-generic-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "solo-mdb-item-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "sc-supplierrc-system-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "common-datax-engine-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "pop-open-web-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-community-web-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "cas-server-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-tradecenter-fed-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "common-transfer-console-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-shop-compose-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "sc-paladin-console-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "resource-fed-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-mykaola-compose-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-merchantregulatory-system-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "haitao-pay-offline-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "haitao-web-nginx-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-voc-system-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-search-mongodb-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-fee-compose-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "async-retry-executor-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-element-compose-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "pop-bss-fed-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-mykaola-compose-offline-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "pop-helpcenter-web-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-search-index-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "bi-pm-sys-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "haitao-ipc-simulation-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-knowledge-fed-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-goodscenter-web-wap-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "haitao-online-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "pop-shopms-fed-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "webcache-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-aftersaleai-app2-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "common-hres-system-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "sc-gaea-compose-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-predelivery-compose-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "haitao-web-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "async-executor-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "pop-warehouse-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaolarec-new-onlinejd001.v1.kaola.jd1.vpc\n" +
-//                "solo-ldb-common-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-commnet-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-trade-order-console-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "sc-goods-compose-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-resource-page-online-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "haitao-ipc-sales-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-bi-luopan-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-shop-front-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "common-trace-system-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-flink-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "sc-sourcetracing-system-web-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "bi-rms-generic-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "haitao-storage-compose-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-matting-system-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-element-web-nginx-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "pbs-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "common-transfer-center-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-pagesms-fed-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "haitao-wap-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "pricing-generic-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-promotionbcp-system-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-factorystore-fed-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-goods-front-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "ncache-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-coupon-compose-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-antispamms-web-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "haitao-ipc-capacity-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-mobile-compose-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kop-ms-fed-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-wechatbiz-web-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-gala-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kop-open-fed-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-cspoffline-compose-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "common-fix-platform-console-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "haitao-ipc-portal-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "haitao-log-analysis-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-search-compose-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "haitao-ofc-system-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "search-bizdata-compose-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "pop-business-compose-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "sc-fed-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-searchcenter-fed-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "nkv-console-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-promotion-compose-offline-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "haitao-pay-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-promotionms-web-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-order-compose-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-ms-web-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "haitao-kafka-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-cps-system-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-userwhitelist-compose-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-mpbackend-fed-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-coupon-compose-offline-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "rec-haitao-http-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "pop-job-web-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "solo-mdb-share-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "da-dw-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "marketing-web-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-market-web-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-servicemarket-system-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-aftersale-web-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-contentms-web-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kop-gatewayouter-compose-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kop-soa-compose-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "common-websocket-component-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "bi-owl-sys-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "sc-qcf2c-system-backend-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "solo-mdb-common-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "sc-qcf2c-system-frontend-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-activityshow-compose-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "pop-shoperp-fed-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "bi-broadcast-calc-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "bi-bumapping-open-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-medicine-web-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "apollo-kl-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-gateway-generic-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-material-system-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-returns-web-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "sc-titan-tc-fed-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-pagesms-web-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-abtest-compose-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "common-fix-platform-schedule-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "afs-csai-system-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "common-datax-console-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "pop-busischool-web-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-inventory-generic-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-goodscenter-web-pc-nginx-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-order-compose-offline-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-content-web-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "sc-ofc-web-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "haitao-smallshop-system-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-goods-sr-compose-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-communityoffline-compose-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-resource-app-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-gateway-compose-backend-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "sc-ops-system-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "haitao-wms-fed-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-basicdict-generic-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "sc-promise-compose-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "haitao-ms-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-shop-generic-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "pop-bms-fed-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "trade-sequence-compose-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "haitao-supplier-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "sc-jxc-front-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-pricingbcp-system-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-goodscenter-compose-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "pop-bss-web-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "bi-datamap-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "pricing-factor-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-off-station-system-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-mykaola-fed-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-promotionbackend-compose-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-content-rec-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-rhea-fed-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-community-web-nginx-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "pop-helpcenter-fed-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-market-compose-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "pop-pic-fed-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-account-generic-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "resource-web-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-regression-fed-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "haitao-jstorm-ui-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-soa-monitor-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "common-kqueue-console-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-iosvip-web-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "pop-oms-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "haitao-cacheindex-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "sc-workdesk-front-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-tradecenter-wap-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-bi-luopan-fed-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "common-ks-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "haitao-matter-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "pricing-dataimportion-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-antispam-http-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-mkt-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-marketcoop-compose-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "goods-compose-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-scdoc-fed-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-financialcenter-compose-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-comment-web-nginx-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "pricing-spi-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-content-fed-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "pop-misc-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "sc-purchase-system-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-elementms-web-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-inventory-generic-offline-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-pages-compose-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-element-web-pc-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-aftersalems-web-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-goods-label-compose-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-mykaola-web-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaolarec-backend-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-csworkorder-system-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-knowledge-system-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "common-ucc-system-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "haitao-wap-nginx-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-aftersale-compose-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-goods-front-offline-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-activity-fed-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-resource-offline-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "pop-virtualtrade-generic-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-tradecenterbcp-system-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-unpkg-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "sc-goodsversion-system-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "basic-location-compose-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "contact-compose-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-tradecenter-web-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "http-service-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "bi-notice-center-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "pop-itemcenter-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "common-cache-console-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-goodscenter-web-pc-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-recommendoffline-compose-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "bi-user-generic-open-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "haitao-credits-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "haitao-sop-onlinejd001.v1.kaola.jd1.vpc\n" +
-//                "common-tech-blog-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "bi-broadcast-web-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-couponbackend-compose-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "haitao-invoice-system-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "bi-logmark-system-web-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "pms-sima-train-model-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-csr-compose-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "sc-contract-system-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "sc-intellinventory-system-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-kapp-docs-onlinejd001.v1.kaola.jd1.vpc\n" +
-//                "kaola-shop-front-nginx-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "sc-allocation-plan-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "haitao-haitao-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "haitao-haitao-offline-onlinejd001.v1.kaola.jd1.vpc\n" +
-//                "kaola-goodscenter-web-wap-nginx-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "sc-supplier-system-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-deploy-fed-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "haitao-rtdw-open-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "pop-virtualtrade-compose-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "buy-process-app-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "haitao-fc-simulation-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "pop-member-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "common-message-console-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-comment-web-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "sc-titan-tc-server-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-community-compose-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "promotion-redpacket-compose-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "purchase-choosegoods-system-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-cart-compose-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-communitysp-compose-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "soa-hystrix-dashboard-onlinejd001.v1.kaola.jd1.vpc\n" +
-//                "solo-mdb-mix-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "pricing-rule-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-tradecenterms-web-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-promotion-compose-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "haitao-nqs-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "pop-finance-compose-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-pages-fed-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "ofc-divisionconfig-system-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-goodsms-web-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "common-perf-system-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "qc-complaint-system-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "common-asynctask-console-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "sc-workdesk-system-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "pricing-ms-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "haitao-mobile-onlinejd001.v1.kaola.jd1.vpc\n" +
-//                "kaola-market-web-nginx-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "haitao-wms-system-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "sc-sourcetracing-system-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "haitao-finance-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-aftersaleai-resource-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "thirdpart-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "bi-open-api-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "common-mainsearch-generic-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-minapp-front-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-mobile-compose-offline-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-activityshowms-web-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-abtest-generic-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "sc-fpe-compose-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "pop-partner-fed-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-video-compose-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "common-registry-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-trace-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-goodsbcp-system-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-soa-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "haitao-warelogis-system-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "haitao-ipc-pbs-onlinejd001.v1.kaola.jd1.vpc\n" +
-//                "haitao-elasticsearch-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-antispam-system-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "bi-yanxuan-push-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "pms-sima-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-distribution-system-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "bi-schedule-system-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "haitao-logistics-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "common-suggest-generic-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "haitao-documentary-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-tagcompany-compose-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-account-generic-offline-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "pop-shop-compose-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "common-workflow-console-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-communityms-web-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "common-bizdata-system-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "common-workflow-component-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-mobilems-front-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-marketms-web-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "sc-goodsportrait-system-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "pay-offline-system-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "haitao-warerecom-compose-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kop-ms-web-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "cas-manager-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-cms-fed-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "common-projmanage-system-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "cas-auth-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-aftersaleai-resource2-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "bi-marketing-sys-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-aftersalebcp-system-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-doc-fed-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "haitao-dw-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "pop-promotion-compose-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "sc-supplierdd-system-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-saker-system-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "bi-daquery-sys-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "pop-partner-web-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-goods-compose-offline-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "haitao-oms-system-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "pop-order-compose-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "haitao-online-offline-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "pop-member-compose-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "bi-pm-sys-backend-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "pricing-selection-system-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-feedback-ms-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "haitao-message-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-element-web-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-traderelated-compose-offline-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-log-collector-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "async-monitor-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-contentms-fed-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-ordersr-compose-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-account-compose-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "haitao-jxc-compose-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "sc-paladin-zk-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "pop-misc-compose-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-pages-web-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-ofc-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-aftersaleai-app-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-share-compose-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "pop-oauth-web-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "haitao-factorystore-system-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "goods-sr-compose-deploy-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "kaola-recommendonline-compose-onlinejd001.v1.kaola.jd1.vpc\n" +
-                "haitao-ipc-oih-onlinejd001.v1.kaola.jd1.vpc"
-                ;
-        String test = "10.196.28.200:26000;10.196.28.201:26000;10.196.28.202:26000";
+
+        String test = "JDDev6101,JDDev6102,JDDev6103,JDDev6104,JDDev6105,JDDev6106,JDDev6107,JDDev6108";
 
         test = test.replace(";", "|");
 
@@ -382,6 +19,39 @@ public class testit {
         test = test.replace("\n", ",");
 
         System.out.println(test);
-        System.out.println(hosts.replace("\n", ",\n"));
+        System.out.println("\0");
+        char a = '\0';
+        System.out.println(a + " " + Integer.valueOf(a));
+        System.out.println('a' + " " + Integer.valueOf('a'));
+        System.out.println("\\0");
+//        System.out.println(hosts.replace("\n", ",\n"));
+    }
+
+
+    @Test
+    public void test1 () {
+        String test = "10.196.32.25:6101,10.196.32.25:6102,10.196.32.25:6103,10.196.32.25:6104,10.196.32.25:6105,10.196.32.25:6106,10.196.32.25:6107,10.196.32.25:6108";
+
+        test = test.replace(";", "|");
+
+        test = test.replace(",", "|");
+
+        System.out.println(test);
+    }
+
+    @Test
+    public void test2() {
+        String test = "10.196.32.25";
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = 6101; i <= 6108; i++) {
+            sb.append(test).append(":").append(i).append(",");
+        }
+        System.out.println(sb.toString());
+        test = test.replace(";", "|");
+
+        test = test.replace(",", ";");
+
+        System.out.println(test);
     }
 }

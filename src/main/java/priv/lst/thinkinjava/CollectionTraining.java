@@ -196,4 +196,15 @@ public class CollectionTraining {
 		System.out.println(set.headSet(8));
 		System.out.println(set.tailSet(8));
 	}
+
+	public static void Concurrent() {
+		List<String> syncList = Collections.synchronizedList(new ArrayList<String>());
+
+		Integer [] array = new Integer[]{1, 2, 3, 4, 5, 6};
+
+		//多线程下使用线程安全的List
+		Arrays.asList(array).parallelStream().forEach(element -> {
+			syncList.add(element.toString());
+		});
+	}
 }

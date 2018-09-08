@@ -1,6 +1,8 @@
 package priv.lst.thinkinjava;
 
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
+import java.util.Arrays;
 
 public class StringTraining {
 	public static void main(String[] args) throws UnsupportedEncodingException{
@@ -21,6 +23,7 @@ public class StringTraining {
 		
 		String s3 = "Hello world 中国";
 		System.out.println(new String(s3.getBytes("utf-8"), "utf-8"));
+		System.out.println(Arrays.toString(s3.getBytes(Charset.forName("utf-8"))) + "\n" + Arrays.toString(s3.getBytes("utf-8")));
 		System.out.println(new String(s3.getBytes("GBK"), "gbk"));
 		String s1 = "ab" + "cd";
 		String s2 = "abcd";
