@@ -1,6 +1,9 @@
 package priv.lst.arch.redis.sentinels;
 
 import redis.clients.jedis.Jedis;
+import redis.clients.jedis.Pipeline;
+
+import java.util.List;
 
 /**
  * Created by lishutao on 2018/8/18.
@@ -24,7 +27,20 @@ public class Main {
         } catch (Exception ex) {
             JedisSentinelsService.returnBrokenRes(jedis);
         } finally {
-            JedisSentinelsService.returnRes(jedis);
+//            JedisSentinelsService.returnRes(jedis);
+        }
+
+//        jedis.get("lishutao");
+        Pipeline pipeline = jedis.pipelined();
+        for (int i = 0; i < 10000; i++) {
+            pipeline.set("count", String.valueOf(i));
+        }
+//        pipeline.sync();
+        List<String> result = (List<String>)(List)(pipeline.syncAndReturnAll());
+        System.out.println(jedis.get("count"));
+        System.out.println(result.size());
+        for (int i = 0; i < 10; i++) {
+            System.out.println(result.get(i));
         }
     }
 }

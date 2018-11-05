@@ -1,5 +1,9 @@
 
+import com.google.common.collect.Lists;
 import org.junit.Test;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by lishutao on 2018/6/15.
@@ -37,6 +41,15 @@ public class testit {
         test = test.replace(",", "|");
 
         System.out.println(test);
+
+        List<String> a = null;
+        for (String s : a) {
+            System.out.println(s);
+        }
+        List as = null;
+        for (Object o : as) {
+
+        }
     }
 
     @Test
@@ -54,4 +67,44 @@ public class testit {
 
         System.out.println(test);
     }
+
+    @Test
+    public void test3() {
+        System.out.println(Arrays.toString(Thread.currentThread().getStackTrace()));
+        String test = "012345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364";
+        String test2 = "国际物流邮件类测试";
+
+        System.out.println(test.split(",").length);
+        System.out.println(test.length());
+        System.out.println(test2.length());
+    }
+
+    @Test
+    public void test4() {
+        System.out.println(Arrays.toString(Thread.currentThread().getStackTrace()));
+        String test = "28.8";
+
+        System.out.println(test.toCharArray());
+        byte[] bytes = new byte[test.toCharArray().length];
+
+        for (int i = 0; i < test.toCharArray().length; i++) {
+            bytes[i] = (byte)test.toCharArray()[i];
+        }
+
+        System.out.println(Arrays.toString("28.8".getBytes()));
+
+        System.out.println(Arrays.toString(bytes));
+        System.out.println(Arrays.toString(test.toCharArray()));
+
+        double d = 3.99;
+        System.out.println(String.valueOf(d));
+
+        int x = 100;
+        byte y = (byte)x;
+        System.out.println(x + " " + y);
+        System.out.println(Integer.toBinaryString(y));
+        System.out.println(Integer.toHexString(y));
+    }
+
+
 }
