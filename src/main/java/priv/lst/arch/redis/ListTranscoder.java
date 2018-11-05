@@ -89,7 +89,6 @@ public class ListTranscoder<M extends Serializable> extends SerializeTranscoder 
 			close(os);
 			close(bos);
 		}
-		
 		return results;
 	}
 

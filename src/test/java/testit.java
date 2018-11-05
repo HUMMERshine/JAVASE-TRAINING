@@ -104,6 +104,10 @@ public class testit {
         System.out.println(x + " " + y);
         System.out.println(Integer.toBinaryString(y));
         System.out.println(Integer.toHexString(y));
+
+        long l = 128;
+        System.out.println(l & 0xff);
+
     }
 
 

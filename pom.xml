@@ -46,10 +46,38 @@
             <!--<version>1.7.2</version>-->
         <!--</dependency>-->
         <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.25</version>
+        </dependency>
+
+        <!--redis配置-->
+        <dependency>
             <groupId>redis.clients</groupId>
             <artifactId>jedis</artifactId>
             <version>2.9.0</version>
         </dependency>
+
+        <!--disconf-->
+        <dependency>
+            <groupId>com.baidu.disconf</groupId>
+            <artifactId>disconf-client</artifactId>
+            <version>3.2</version>
+        </dependency>
+
+        <!--solo-->
+        <dependency>
+            <groupId>com.netease.haitao</groupId>
+            <artifactId>haitao-solo-rdb</artifactId>
+            <version>0.0.35</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
+            <version>2.0</version>
+        </dependency>
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -61,6 +89,7 @@
             <artifactId>hamcrest-all</artifactId>
             <version>1.3</version>
         </dependency>
+
         <dependency>
             <groupId>javassist</groupId>
             <artifactId>javassist</artifactId>

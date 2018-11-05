@@ -1,6 +1,7 @@
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import org.junit.Test;
+import priv.lst.arch.test.MillisecondClock;
 import priv.lst.domain.Student;
 
 import java.math.BigDecimal;
@@ -58,4 +59,38 @@ public class testit2 {
         System.out.println(Runtime.getRuntime().totalMemory()/1024/1024);
         System.out.println(Runtime.getRuntime().freeMemory()/1024/1024);
     }
+
+    @Test
+    public void test3() throws InterruptedException, Exception {
+        System.out.println(MillisecondClock.CLOCK.now());
+        Thread.sleep(1000);
+        System.out.println(MillisecondClock.CLOCK.now());
+        MillisecondClock.CLOCK.t.interrupt();
+        Thread.sleep(10000);
+        System.out.println(MillisecondClock.CLOCK.now());
+    }
+
+    @Test
+    public <T> void test4() {
+        String group = "1001";
+        System.out.println(group);
+        System.out.println(group + "\0");
+        char ch = '\0';
+        System.out.println(ch);
+        System.out.println("1");
+        int chi = '1';
+        int ch0 = '\0';
+        System.out.println(chi);
+        System.out.println(ch0);
+        System.out.println('1' - '\0');
+
+        String x = String.class.cast("123");
+        System.out.println(x);
+
+        int y = 1;
+        System.out.printf("%x, %d\n", y, y);
+        y = 0x22;
+        System.out.printf("%x, %d\n", y, y);
+    }
+
 }
