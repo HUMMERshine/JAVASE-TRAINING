@@ -1,12 +1,14 @@
 package priv.lst.java8;
 
+import com.google.common.collect.Maps;
 import javassist.expr.Instanceof;
 import net.mindview.util.Pair;
+import net.mindview.util.Print;
 import priv.lst.domain.Person;
 
+import java.io.Serializable;
 import java.util.*;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -76,13 +78,25 @@ public class UserStream {
         System.out.println(map3.getClass().getName() + map4);
         System.out.println(map3.getClass().getName() + map5);
 
+        boolean result = Maps.newHashMap().entrySet().stream().allMatch(entry -> {
+            return false;});
+        System.out.println(result);
+
     }
 
     public static class Print {
         public static void print(String s) {
             System.out.println("hello!");
+            testput(new String("sddd"));
         }
     }
 
 
+    public static void testput(Object a) {
+
+    }
+
+    public static void testput(Serializable a){
+
+    }
 }

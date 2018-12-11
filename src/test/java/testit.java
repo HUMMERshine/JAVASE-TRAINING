@@ -107,6 +107,12 @@ public class testit {
 
         long l = 128;
         System.out.println(l & 0xff);
+        System.out.println(l & 0xff);
+        System.out.println(l & 0xff);
+        System.out.println(l & 0xff);
+        System.out.println(l & 0xff);
+        System.out.println(l & 0xff);
+        System.out.println(l & 0xff);
 
     }
 

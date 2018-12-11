@@ -36,5 +36,13 @@ public class StringTraining {
 		String str9 = "a" + str8;
 		String str89 = "ab";
 		System.out.println("str9 = str89 : " + (str9 == str89));
+
+		String [] strings = "abc,".split(",");
+		System.out.println(strings.length);
+		System.out.println(Arrays.toString(strings));
+
+		strings = "ab c, ".split(" ");
+		System.out.println(strings.length);
+		System.out.println(Arrays.toString(strings));
 	}
 }
