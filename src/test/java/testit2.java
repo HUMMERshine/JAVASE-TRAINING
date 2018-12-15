@@ -1,7 +1,10 @@
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import org.junit.Test;
 import priv.lst.arch.test.MillisecondClock;
+import priv.lst.domain.Person;
 import priv.lst.domain.Student;
 
 import java.math.BigDecimal;
@@ -93,4 +96,13 @@ public class testit2 {
         System.out.printf("%x, %d\n", y, y);
     }
 
+    @Test
+    public <T> void test5() {
+        List<Integer> person = JSONObject.parseObject("[\"0\",\"50\",\"80\",\"100\",\"200\",\"500\"]", new TypeReference<List<Integer>>(){});
+        System.out.println(person);
+
+        Long l = JSONObject.parseObject("100", new TypeReference<Long>(){});
+        System.out.println(l);
+
+    }
 }

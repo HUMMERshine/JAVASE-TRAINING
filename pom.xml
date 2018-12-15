@@ -8,6 +8,10 @@
     <artifactId>JAVASE-TRAINING</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <properties>
+        <ignite.version>2.7.0</ignite.version>
+    </properties>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -41,9 +45,9 @@
             <version>3.2.1</version>
         </dependency>
         <!--<dependency>-->
-            <!--<groupId>org.slf4j</groupId>-->
-            <!--<artifactId>slf4j-log4j12</artifactId>-->
-            <!--<version>1.7.2</version>-->
+        <!--<groupId>org.slf4j</groupId>-->
+        <!--<artifactId>slf4j-log4j12</artifactId>-->
+        <!--<version>1.7.2</version>-->
         <!--</dependency>-->
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -106,6 +110,43 @@
             <artifactId>guava</artifactId>
             <version>21.0</version>
         </dependency>
+
+        <!--netty-->
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty</artifactId>
+            <version>3.5.6.Final</version>
+        </dependency>
+
+        <!--ignite-->
+        <dependency>
+            <groupId>org.apache.ignite</groupId>
+            <artifactId>ignite-core</artifactId>
+            <version>${ignite.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.ignite</groupId>
+            <artifactId>ignite-spring</artifactId>
+            <version>${ignite.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.ignite</groupId>
+            <artifactId>ignite-indexing</artifactId>
+            <version>${ignite.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.ignite</groupId>
+            <artifactId>ignite-web</artifactId>
+            <version>${ignite.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.ignite</groupId>
+            <artifactId>ignite-ssh</artifactId>
+            <version>${ignite.version}</version>
+        </dependency>
+
     </dependencies>
 
     <build>

@@ -1,7 +1,10 @@
 package priv.lst.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import priv.lst.netty.NettyTest;
 
 /**
  * Created by lishutao on 2018/5/13.
@@ -12,8 +15,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class TestController {
 
+    @Autowired
+    NettyTest nettyTest;
+
     @RequestMapping("/helloworld")
     public String helloworld() {
+        nettyTest.init();
         return "helloworld";
     }
+
+    @RequestMapping("/sendMsg")
+    public void sendMsg(@RequestParam("msg") String msg) {
+        nettyTest.sendMsg(msg);
+
+    }
+
 }
