@@ -12,6 +12,13 @@
         <ignite.version>2.7.0</ignite.version>
     </properties>
 
+    <!--<parent>-->
+        <!--<groupId>org.springframework.boot</groupId>-->
+        <!--<artifactId>spring-boot-starter-parent</artifactId>-->
+        <!--<version>1.5.13.RELEASE</version>-->
+        <!--<relativePath /> &lt;!&ndash; lookup parent from repository &ndash;&gt;-->
+    <!--</parent>-->
+
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -95,6 +102,12 @@
         </dependency>
 
         <dependency>
+            <groupId>net.jpountz.lz4</groupId>
+            <artifactId>lz4</artifactId>
+            <version>1.2.0</version>
+        </dependency>
+
+        <dependency>
             <groupId>javassist</groupId>
             <artifactId>javassist</artifactId>
             <version>3.12.1.GA</version>
@@ -145,6 +158,16 @@
             <groupId>org.apache.ignite</groupId>
             <artifactId>ignite-ssh</artifactId>
             <version>${ignite.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-cache</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>net.sf.ehcache</groupId>
+            <artifactId>ehcache</artifactId>
         </dependency>
 
     </dependencies>

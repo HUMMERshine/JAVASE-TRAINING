@@ -1,5 +1,6 @@
 package priv.lst.arch.test;
 
+
 /**
  * Created by hzzhanghongxiao on 2018/10/29.
  *
@@ -9,8 +10,8 @@ package priv.lst.arch.test;
 public class MillisecondClock {
     private long rate = 0;// 频率
     private volatile long now = 0;// 当前时间
-    private boolean alive = true;
-    public Thread t;
+    private boolean isAlive = true;
+    public  Thread t;
 
     private MillisecondClock(long rate) {
         this.rate = rate;
@@ -27,10 +28,8 @@ public class MillisecondClock {
                         Thread.sleep(rate);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
-                        alive = false;
-                        System.out.println(Thread.currentThread().isInterrupted());
+                        isAlive = false;
                         Thread.currentThread().interrupt();
-                        System.out.println(Thread.currentThread().isInterrupted());
                     }
                     now = System.currentTimeMillis();
                 }
@@ -39,9 +38,9 @@ public class MillisecondClock {
         t.start();
     }
 
-    public long now() throws Exception {
-        if (!alive) {
-            throw new Exception("MillisecondClock shutdown");
+    public long now() {
+        if (!isAlive) {
+            throw new RuntimeException("MillisecondClock shutdown");
         }
         return now;
     }

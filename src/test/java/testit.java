@@ -1,9 +1,15 @@
 
 import com.google.common.collect.Lists;
+import javassist.bytecode.ByteArray;
 import org.junit.Test;
+import priv.lst.arch.test.MillisecondClock;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by lishutao on 2018/6/15.
@@ -116,5 +122,17 @@ public class testit {
 
     }
 
+    @Test
+    public void test5() throws InterruptedException {
+        ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
+        service.scheduleAtFixedRate(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("hello");
+            }
+        }, 5, 5, TimeUnit.SECONDS);
+
+        Thread.sleep(60 * 1000);
+    }
 
 }

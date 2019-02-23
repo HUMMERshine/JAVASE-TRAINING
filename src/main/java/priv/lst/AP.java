@@ -3,12 +3,10 @@ package priv.lst;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import priv.lst.log4j.LogTest;
-import priv.lst.netty.client.NettyClient;
-import priv.lst.netty.server.NettyServer;
+import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.context.annotation.ImportResource;
 
 /**
  该注解指定项目为springboot，由此类当作程序入口
@@ -16,6 +14,8 @@ import priv.lst.netty.server.NettyServer;
 
  **/
 @SpringBootApplication
+@ImportResource({"classpath:config/app-config.xml"})
+//@EnableCaching
 public class AP {
     public static Logger LOGGER = LoggerFactory.getLogger(AP.class);
     public static void main(String[] args) {

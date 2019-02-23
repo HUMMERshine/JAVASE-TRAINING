@@ -1,9 +1,12 @@
 package priv.lst.controller;
 
+import net.sf.ehcache.Element;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import priv.lst.ehcache.MyEhcache;
+import priv.lst.ehcache.User;
 import priv.lst.netty.NettyTest;
 
 /**
@@ -18,6 +21,9 @@ public class TestController {
     @Autowired
     NettyTest nettyTest;
 
+    @Autowired
+    MyEhcache myEhcache;
+
     @RequestMapping("/helloworld")
     public String helloworld() {
         nettyTest.init();
@@ -30,4 +36,9 @@ public class TestController {
 
     }
 
+    @RequestMapping("/ehcache")
+    public String ehcache() {
+        Element e = myEhcache.test();
+        return e.toString();
+    }
 }
