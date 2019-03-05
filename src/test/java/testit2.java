@@ -1,13 +1,17 @@
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.google.common.base.Stopwatch;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import lombok.Getter;
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 import priv.lst.arch.test.MillisecondClock;
 import priv.lst.domain.Person;
 import priv.lst.domain.Student;
+import priv.lst.ehcache.User;
 import priv.lst.util.NkvUtil;
 
 import java.io.BufferedOutputStream;
@@ -17,6 +21,7 @@ import java.math.BigDecimal;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
@@ -138,6 +143,11 @@ public class testit2 {
         Pattern pattern = Pattern.compile("(ssh://g.hz.netease.com/).*");
         System.out.println(pattern.matcher("ssh://g.hz.neteae.com/xxx").matches());
 //        "hell".startsWith()
+
+        User user = new User("xxx", "xxx");
+        user.setName("hello");
+        user.setCode("world");
+        System.out.println(user);
     }
 
     @Test
@@ -164,6 +174,34 @@ public class testit2 {
         System.out.println(Arrays.toString(str));
         System.out.println(Arrays.toString(compresStr));
 
+    }
+
+    @Test
+    public void test9() {
+        Map<String, String> map1 = Maps.newHashMap();
+        Map<String, String> map2 = Maps.newHashMap();
+
+        map1.put("key1", "hello");
+        map1.put("key2", "world");
+
+        map2.put("key2", "world");
+        map2.put("key1", "hello");
+
+        String str1 = JSON.toJSONString(map1);
+        String str2 = JSON.toJSONString(map2);
+
+        JSONObject.parseObject(str2);
+
+        System.out.println(StringUtils.equals(str1, str2));
+    }
+
+    @Test
+    public void test10() {
+        String [] strArray = "asdfasdfas/asfasfasd/asdfasfasd".split("/");
+
+        System.out.println(Arrays.toString(strArray));
+
+        System.out.println(TT.JAVAAPP.getName());
     }
 
     @Test

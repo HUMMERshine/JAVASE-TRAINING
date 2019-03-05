@@ -1,5 +1,7 @@
 package priv.lst.ehcache;
 
+import lombok.Data;
+
 import java.io.Serializable;
 
 /**
@@ -8,6 +10,7 @@ import java.io.Serializable;
  * @author lishutao
  * @date 2019/2/23
  */
+@Data
 public class User implements Serializable {
     private static final long serialVersionUID = -6227376640818226890L;
     private String name;
@@ -23,7 +26,7 @@ public class User implements Serializable {
         return name;
     }
     public void setName(String name) {
-        this.name = name;
+        this.name = "lishutao";
     }
     public String getCode() {
         return code;
