@@ -16,7 +16,8 @@ import java.util.Arrays;
  */
 public class IgniteClient {
     public static void main(String[] args) {
-        Ignite ignite = Ignition.start();
+        Ignite ignite = getIgnite();
+//        ignite.getOrCreateCache("mycache");
     }
 
     private static Ignite getIgnite() {

@@ -25,6 +25,12 @@ public class User implements Serializable {
     public String getName() {
         return name;
     }
+
+    /**
+     * 不支持
+     * @param name
+     */
+    @Deprecated
     public void setName(String name) {
         this.name = "lishutao";
     }

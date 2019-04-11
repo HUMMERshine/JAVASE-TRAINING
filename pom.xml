@@ -51,16 +51,6 @@
             <artifactId>commons-collections</artifactId>
             <version>3.2.1</version>
         </dependency>
-        <!--<dependency>-->
-        <!--<groupId>org.slf4j</groupId>-->
-        <!--<artifactId>slf4j-log4j12</artifactId>-->
-        <!--<version>1.7.2</version>-->
-        <!--</dependency>-->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.7.25</version>
-        </dependency>
 
         <!--redis配置-->
         <dependency>
@@ -77,6 +67,13 @@
         </dependency>
 
         <!--solo-->
+        <dependency>
+            <groupId>com.netease.haitao</groupId>
+            <artifactId>haitao-solo</artifactId>
+            <version>1.0.45</version>
+        </dependency>
+
+        <!--solo-rdb-->
         <dependency>
             <groupId>com.netease.haitao</groupId>
             <artifactId>haitao-solo-rdb</artifactId>
@@ -133,30 +130,33 @@
 
         <!--ignite-->
         <dependency>
+            <groupId>net.sf.json-lib</groupId>
+            <artifactId>json-lib</artifactId>
+            <version>2.4</version>
+            <classifier>jdk15</classifier>
+        </dependency>
+
+        <dependency>
             <groupId>org.apache.ignite</groupId>
             <artifactId>ignite-core</artifactId>
             <version>${ignite.version}</version>
         </dependency>
+
         <dependency>
             <groupId>org.apache.ignite</groupId>
             <artifactId>ignite-spring</artifactId>
             <version>${ignite.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
+
         <dependency>
             <groupId>org.apache.ignite</groupId>
             <artifactId>ignite-indexing</artifactId>
-            <version>${ignite.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.ignite</groupId>
-            <artifactId>ignite-web</artifactId>
-            <version>${ignite.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.ignite</groupId>
-            <artifactId>ignite-ssh</artifactId>
             <version>${ignite.version}</version>
         </dependency>
 

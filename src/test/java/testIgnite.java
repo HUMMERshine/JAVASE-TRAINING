@@ -7,14 +7,17 @@ import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.ignite.Ignite;
+import org.apache.ignite.Ignition;
+import org.apache.ignite.configuration.IgniteConfiguration;
+import org.apache.ignite.spi.discovery.tcp.TcpDiscoverySpi;
+import org.apache.ignite.spi.discovery.tcp.ipfinder.vm.TcpDiscoveryVmIpFinder;
 import org.junit.Test;
 import priv.lst.arch.test.MillisecondClock;
-import priv.lst.domain.Person;
 import priv.lst.domain.Student;
 import priv.lst.ehcache.User;
 import priv.lst.util.NkvUtil;
 
-import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -24,7 +27,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
@@ -33,50 +35,19 @@ import java.util.regex.Pattern;
  * @author lishutao
  * @date 2018/6/15
  */
-public class testit2 {
-    public static void main(String[] args) {
-
-        String str = "perf3sentinel";
-        int start = 6134;
-        int end = 6166;
-        String result = "";
-        for (int i = start; i <= end; i++) {
-            result = result + str + i + "|";
-        }
-
-        result = result.substring(0, result.length() - 1);
-
-        System.out.println(result);
-    }
-
+public class testIgnite {
     @Test
     public void test1() {
-        BigDecimal bigDecimal = BigDecimal.valueOf(10);
-        bigDecimal = bigDecimal.setScale(2, BigDecimal.ROUND_DOWN);
-        System.out.println(bigDecimal.compareTo(BigDecimal.valueOf(10.000)));
+        Maps.newHashMap();
+        TcpDiscoverySpi spi = new TcpDiscoverySpi();
+        TcpDiscoveryVmIpFinder ipFinder = new TcpDiscoveryVmIpFinder();
+        ipFinder.setAddresses(Arrays.asList("127.0.0.1:47500..47509"));
+        spi.setIpFinder(ipFinder);
+        IgniteConfiguration cfg = new IgniteConfiguration();
+        cfg.setDiscoverySpi(spi);
+        cfg.setClientMode(true);
 
-        String strs = "2";
-        String[] ids = strs.split(",");
-        List<String> list = Lists.newArrayList();
-        for (String id : ids) {
-            System.out.println(Integer.valueOf(id));
-        }
-
-        Set<Integer> set = Sets.newHashSet(1, 209);
-        Integer x = 209;
-        Integer y = 209;
-        System.out.println(set);
-        System.out.println(set.contains(y));
-        System.out.println(set.contains(x));
-        System.out.println(x.hashCode() + " " + y.hashCode());
-        System.out.println(x.equals(y));
-
-        Student student = new Student(1, "xxx");
-        System.out.println(student.getId());
-
-        System.out.println(Runtime.getRuntime().availableProcessors());
-        System.out.println(Runtime.getRuntime().totalMemory() / 1024 / 1024);
-        System.out.println(Runtime.getRuntime().freeMemory() / 1024 / 1024);
+        Ignite ignite = Ignition.start(cfg);
     }
 
     @Test
@@ -130,28 +101,6 @@ public class testit2 {
         System.out.println(s);
 
         System.out.println(TT.JAVAAPP.toString());
-
-        JSONObject jsonObject = JSON.parseObject("{\n" +
-            "    \"id\": 12294,\n" +
-            "    \"namespace\": {\n" +
-            "        \"id\": 5519,\n" +
-            "        \"name\": \"solo\",\n" +
-            "        \"path\": \"solo\",\n" +
-            "        \"kind\": \"group\",\n" +
-            "        \"full_path\": \"haitao-arch/solo\",\n" +
-            "        \"parent_id\": 3780\n" +
-            "    },\n" +
-            "    \"permissions\": {\n" +
-            "        \"project_access\": {\n" +
-            "            \"access_level\": 40,\n" +
-            "            \"notification_level\": 3\n" +
-            "        },\n" +
-            "        \"group_access\": null\n" +
-            "    }\n" +
-            "}");
-
-        Object o = jsonObject.get("permission");
-        System.out.println(o);
     }
 
     @Test

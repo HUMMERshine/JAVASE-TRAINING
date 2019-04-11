@@ -22,6 +22,7 @@ public class MyEhcache {
 
     public Element test() {
         User user = new User("hello", "world");
+        user.setName("asdf");
         Cache demo = cacheManager.getCache("demoCache");
         demo.put(new Element(user.getName(), user));
         Element e=(Element)demo.get(user.getName());

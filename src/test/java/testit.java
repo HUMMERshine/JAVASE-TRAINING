@@ -1,14 +1,17 @@
 
 import com.google.common.collect.Lists;
-import javassist.bytecode.ByteArray;
+import com.google.common.collect.Maps;
 import org.junit.Test;
 import priv.lst.arch.test.MillisecondClock;
+import priv.lst.util.ByteArray;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -124,7 +127,7 @@ public class testit {
 
     @Test
     public void test5() throws InterruptedException {
-        ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
+        ScheduledExecutorService service = new ScheduledThreadPoolExecutor(1);
         service.scheduleAtFixedRate(new Runnable() {
             @Override
             public void run() {
@@ -132,7 +135,41 @@ public class testit {
             }
         }, 5, 5, TimeUnit.SECONDS);
 
+        Thread.sleep(10 * 1000);
+
+        service.shutdown();
+
+        Thread.sleep(1 * 1000);
+        System.out.println(service.isTerminated());
+
         Thread.sleep(60 * 1000);
+    }
+
+    @Test
+    public void test6()  {
+        HashMap<ByteArray, Integer> map = Maps.newHashMap();
+        byte [] bytes = "lishuta".getBytes();
+        map.put(ByteArray.wrap(bytes), 100);
+
+        Integer result = map.get(ByteArray.wrap(bytes));
+        Integer result1 = map.get(bytes);
+
+        System.out.println(result);
+        System.out.println(result1);
+    }
+
+    @Test
+    public void test7() {
+        List<String> list = Lists.newArrayList();
+        list.add("a");
+        list.add("a");
+        list.add("a");
+        list.add("a");
+
+        list.stream().forEach(element -> {
+            System.out.println(element);
+            return;
+        });
     }
 
 }
