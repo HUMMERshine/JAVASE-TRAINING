@@ -36,6 +36,16 @@ public class NettyClient {
             Executors.newCachedThreadPool(),
             Executors.newCachedThreadPool()));
 
+        /**
+         *
+         * pipeline1，pipeline2，pipeline3，pipeline4，pipeline5
+         *
+         * read(upstream/inbound): 从 pipeline1 到 pipeline5
+         * write(downstream/outbound): 从 pipeline5 到 pipeline1
+         *
+         * 读的顺序 decoder->handler
+         * 写的顺序 handler->encoder
+         */
         bootstrap.setPipelineFactory(new ChannelPipelineFactory() {
             public ChannelPipeline getPipeline() throws Exception {
                 ChannelPipeline channelPipeline = Channels.pipeline();
