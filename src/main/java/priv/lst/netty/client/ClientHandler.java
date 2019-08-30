@@ -13,10 +13,11 @@ import java.util.Date;
  * @date 2018/12/15
  */
 public class ClientHandler extends SimpleChannelHandler {
+    @Override
     public void messageReceived(ChannelHandlerContext ctx, MessageEvent e)
         throws Exception {
         String content = (String) e.getMessage();
-        System.out.println(""+ new Date().toString() + "\n" + content);
+        System.out.println("client receive message:"+ new Date().toString() + "\n" + content);
     }
 
 }

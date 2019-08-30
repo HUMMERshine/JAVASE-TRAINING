@@ -26,7 +26,7 @@ public class NettyConfig {
     public NettyServer nettyServer(ServerHandler serverHandler) {
         NettyServer nettyServer = new NettyServer();
         nettyServer.setHandler(serverHandler);
-        nettyServer.setPort(8081);
+        nettyServer.setPort(8088);
         return nettyServer;
     }
     //跟下边的方法一样
@@ -46,7 +46,7 @@ public class NettyConfig {
     public NettyClient nettyClient() {
         NettyClient nettyClient = new NettyClient();
         nettyClient.setHost("127.0.0.1");
-        nettyClient.setPort(8081);
+        nettyClient.setPort(8088);
         nettyClient.setHandler(clientHandler());
         return nettyClient;
     }

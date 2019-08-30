@@ -1,5 +1,6 @@
 package priv.lst.netty;
 
+import net.mindview.atunit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import priv.lst.netty.client.ClientThread;
@@ -16,7 +17,7 @@ import priv.lst.netty.server.NettyServer;
 public class NettyTest {
 
     @Autowired
-    NettyServer nettyServer;
+    NettyServer nettyServer ;
 
     @Autowired
     ClientThread clientThread;

@@ -7,6 +7,8 @@ import org.jboss.netty.channel.Channels;
 import org.jboss.netty.channel.socket.nio.NioServerSocketChannelFactory;
 import org.jboss.netty.handler.codec.string.StringDecoder;
 import org.jboss.netty.handler.codec.string.StringEncoder;
+import org.springframework.stereotype.Component;
+import priv.lst.netty.client.MySelfStringEncoder;
 
 import java.net.InetSocketAddress;
 import java.util.concurrent.Executors;
@@ -17,8 +19,9 @@ import java.util.concurrent.Executors;
  * @author lishutao
  * @date 2018/12/15
  */
+@Component
 public class NettyServer {
-    private int port = 8080;
+    private int port = 8088;
     private ServerBootstrap bootstrap;
     private ServerHandler handler;
     /**
@@ -33,11 +36,13 @@ public class NettyServer {
         );
 
         bootstrap.setPipelineFactory(new ChannelPipelineFactory() {
+
+            @Override
             public ChannelPipeline getPipeline() throws Exception {
                 ChannelPipeline pipeline = Channels.pipeline();
                 /*典型的过滤式处理*/
-                pipeline.addLast("encode", new StringEncoder());
-                pipeline.addLast("decode", new StringDecoder());
+                pipeline.addLast("encode", new MySelfStringEncoder());
+                pipeline.addLast("decode", new MySelfStringDecoder());
                 /*添加自定义的handler，对请求进行处理*/
                 pipeline.addLast("handler", handler);
                 return pipeline;

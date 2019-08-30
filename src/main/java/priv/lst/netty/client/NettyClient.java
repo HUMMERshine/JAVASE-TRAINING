@@ -8,6 +8,8 @@ import org.jboss.netty.channel.Channels;
 import org.jboss.netty.channel.socket.nio.NioClientSocketChannelFactory;
 import org.jboss.netty.handler.codec.string.StringDecoder;
 import org.jboss.netty.handler.codec.string.StringEncoder;
+import org.springframework.stereotype.Component;
+import priv.lst.netty.server.MySelfStringDecoder;
 
 import java.net.InetSocketAddress;
 import java.util.concurrent.Executors;
@@ -18,8 +20,9 @@ import java.util.concurrent.Executors;
  * @author lishutao
  * @date 2018/12/15
  */
+@Component
 public class NettyClient {
-    private  int port=8080;
+    private  int port=8088;
     private String host="127.0.0.1";
     private ClientBootstrap bootstrap;
     private ClientHandler handler;
@@ -36,8 +39,8 @@ public class NettyClient {
         bootstrap.setPipelineFactory(new ChannelPipelineFactory() {
             public ChannelPipeline getPipeline() throws Exception {
                 ChannelPipeline channelPipeline = Channels.pipeline();
-                channelPipeline.addLast("encode", new StringEncoder());
-                channelPipeline.addLast("decode", new StringDecoder());
+                channelPipeline.addLast("encode", new MySelfStringEncoder());
+                channelPipeline.addLast("decode", new MySelfStringDecoder());
                 channelPipeline.addLast("handler", handler);
                 return channelPipeline;
             }

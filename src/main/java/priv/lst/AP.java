@@ -7,6 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.ImportResource;
+import priv.lst.netty.NettyTest;
 
 /**
  该注解指定项目为springboot，由此类当作程序入口
@@ -25,7 +26,6 @@ public class AP {
         LOGGER.warn("this is warn");
         LOGGER.error("this is error");
         LOGGER.info("end");
-
     }
 
 }

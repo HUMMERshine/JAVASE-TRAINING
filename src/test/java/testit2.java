@@ -5,26 +5,20 @@ import com.google.common.base.Stopwatch;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
+import lombok.Data;
 import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 import priv.lst.arch.test.MillisecondClock;
-import priv.lst.domain.Person;
 import priv.lst.domain.Student;
 import priv.lst.ehcache.User;
 import priv.lst.util.NkvUtil;
 
-import java.io.BufferedOutputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.math.BigDecimal;
 import java.nio.ByteBuffer;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
@@ -34,19 +28,131 @@ import java.util.regex.Pattern;
  * @date 2018/6/15
  */
 public class testit2 {
-    public static void main(String[] args) {
 
-        String str = "perf3sentinel";
-        int start = 6134;
-        int end = 6166;
-        String result = "";
-        for (int i = start; i <= end; i++) {
-            result = result + str + i + "|";
+    @Data
+    public static class LogStruct{
+        public String parentDir = "/";
+
+        public String logFile;
+
+        public List<LogStruct> childDirList;
+
+        public Boolean isDir = false;
+
+        public String getPath() {
+            if (StringUtils.isBlank(parentDir)) {
+                return "/" + logFile;
+            } else {
+                return parentDir + "/" + logFile;
+            }
         }
 
-        result = result.substring(0, result.length() - 1);
+        @Override
+        public String toString() {
+            return childDirList == null ? logFile :  logFile + childDirList.toString();
+        }
+    }
 
-        System.out.println(result);
+    public static final String splitStr = "|--";
+    public static final String endStr = "|--";
+
+    public static final Map<Integer, List<LogStruct>> logLevelMap = Maps.newHashMap();
+    public static final Map<Integer, LogStruct> curLogLevelMap = Maps.newHashMap();
+
+    public static void main(String[] args) {
+
+        final String endString1 = "|--";
+        final String endString2 = "`--";
+        final String endChar1 = "|";
+        final String endChar2 = "`";
+        Process process = null;
+        List<String> processList = new ArrayList<String>();
+        try {
+//            process = Runtime.getRuntime().exec("ls -R /Users/lishutao/code");
+            process = Runtime.getRuntime().exec("tree /Users/lishutao/code");
+//            process = Runtime.getRuntime().exec("kubectl exec kaola-test-demo-docker-qatest-29-4-1799-6bccdb557-k2wm2 -- tree approot/logs/ -P *.log");
+            BufferedReader input = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            String line = "";
+            while ((line = input.readLine()) != null) {
+                processList.add(line);
+                System.out.println(line);
+            }
+            input.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Boolean isException = false;
+        List<String> stringList = Lists.newArrayList();
+        for (String line : processList) {
+            if(StringUtils.isBlank(line.trim())) {
+                continue;
+            }
+            if (line.contains(endString1) || line.contains(endString2)
+                || line.contains(endChar1) || line.contains(endChar2)) {
+                Integer num = 0;
+                num = StringUtils.countMatches(line, endString1) + StringUtils.countMatches(line, endString2);
+                if (num > 1) {
+                    isException = true;
+                    break;
+                } else {
+                    stringList.add(line);
+                }
+            }
+        }
+
+        LogStruct curLogStruct = null;
+        for (String line : stringList) {
+//            line = StringUtils.trim(line);
+            if (StringUtils.isBlank(line)) {
+                continue;
+            }
+
+            Integer logLevel = 0;
+            if (StringUtils.contains(line, endString2)) {
+                Integer index = line.indexOf(endString2);
+                logLevel = index / 4 + 1;
+            } else if (StringUtils.contains(line, endString1)) {
+                Integer index = line.lastIndexOf(endString1);
+                logLevel = index / 4 + 1;
+            }
+            String logFile = "";
+            if (StringUtils.contains(line, endChar2)) {
+                logFile = line.substring(StringUtils.lastIndexOf(line, endChar2) + 4);
+            } else {
+                logFile = line.substring(StringUtils.lastIndexOf(line, endChar1) + 4);
+            }
+
+            List<LogStruct> logStructList = logLevelMap.get(logLevel);
+            if (null == logStructList) {
+                logStructList = Lists.newArrayList();
+                logLevelMap.put(logLevel, logStructList);
+            }
+
+            LogStruct logStruct = new LogStruct();
+            curLogStruct = logStruct;
+            logStruct.setLogFile(logFile.trim());
+            if (logLevel > 1) {
+                LogStruct parentLog = curLogLevelMap.get(logLevel - 1);
+                parentLog.setIsDir(true);
+                List<LogStruct> childDirList = parentLog.getChildDirList();
+                if (childDirList == null) {
+                    childDirList = Lists.newArrayList();
+                    parentLog.setChildDirList(childDirList);
+                }
+                childDirList.add(logStruct);
+                logStruct.setParentDir(parentLog.getPath());
+            }
+            logStructList.add(logStruct);
+
+            curLogLevelMap.put(logLevel, logStruct);
+        }
+        if (isException && curLogStruct != null) {
+            curLogStruct.setIsDir(true);
+        }
+
+        System.out.println(logLevelMap.get(1));
+
     }
 
     @Test
@@ -55,7 +161,7 @@ public class testit2 {
         bigDecimal = bigDecimal.setScale(2, BigDecimal.ROUND_DOWN);
         System.out.println(bigDecimal.compareTo(BigDecimal.valueOf(10.000)));
 
-        String strs = "2";
+        String strs = "{\"clusters\":[{\"master\":\"10.177.20.59:5198\",\"slave\":\"10.177.20.63:5198\",\"group\":\"group_1\",\"readWeight\":100,\"writeWeight\":1,\"oldNkv\":false,\"readSlave\":true}]}";
         String[] ids = strs.split(",");
         List<String> list = Lists.newArrayList();
         for (String id : ids) {
@@ -191,7 +297,7 @@ public class testit2 {
         bio.write(ByteBuffer.allocate(4).putInt(NkvUtil.FAST_COM_CODE).array());
         bio.write(ByteBuffer.allocate(4).putInt(compressedValue.getOlength()).array());
         bio.write(compressedValue.getValue());
-        byte[]  compresStr = bio.toByteArray();
+        byte[] compresStr = bio.toByteArray();
 
         System.out.println(Arrays.toString(str));
         System.out.println(Arrays.toString(compresStr));
@@ -219,7 +325,7 @@ public class testit2 {
 
     @Test
     public void test10() {
-        String [] strArray = "asdfasdfas/asfasfasd/asdfasfasd".split("/");
+        String[] strArray = "asdfasdfas/asfasfasd/asdfasfasd".split("/");
 
         System.out.println(Arrays.toString(strArray));
 
@@ -235,6 +341,199 @@ public class testit2 {
             System.out.println(l);
         } catch (Exception e) {
             System.out.println("l");
+        }
+    }
+
+    @Test
+    public void test11() {
+        short x = Short.MAX_VALUE;
+        int y = x;
+        y = y + 1000;
+        System.out.println(y);
+        System.out.println((short) y);
+        System.out.println();
+
+        y = (short) y;
+        System.out.println(y);
+
+    }
+
+    @Test
+    public void test12() {
+        System.out.println(90 * 24 * 60 * 60 * 1000);
+        System.out.println(90L * 24 * 60 * 60 * 1000);
+
+        String test = "adfb ";
+        String test2 = StringUtils.trim(test);
+        System.out.println(test2);
+        System.out.println(test);
+    }
+
+    @Test
+    public void test13() {
+        JSONObject jsonObject =
+            JSONObject.parseObject("{\"deploy\":{\"platcommon\":{\"httpPort\":{\"required\":true,\"value\":8080}},\"uncommon\":{\"xmx\":{\"value\":\"4096\"},\"maxPerm\":{\"value\":\"256\"},\"jvmExtra\":{\"value\":\"\"},\"xms\":{\"value\":\"4096\"}}},\"privateFileList\":[],\"request\":{\"check\":{\"retry\":5,\"sleep\":10,\"timeout\":20},\"healthPort\":\"\",\"offline\":{\"retry\":5,\"sleep\":10,\"timeout\":20},\"online\":{\"retry\":5,\"sleep\":10,\"timeout\":20},\"status\":{\"retry\":5,\"sleep\":10,\"timeout\":20},\"stop\":{\"retry\":5,\"sleep\":10,\"timeout\":20}},\"zelda\":{\"limit\":{\"cpu\":4.0,\"memory\":1,\"unit\":\"G\"},\"logPath\":\"/home/appops/tomcat/logs/\",\"request\":{\"cpu\":1.0,\"memory\":512,\"unit\":\"M\"}}}");
+        System.out.println(jsonObject);
+    }
+
+    @Test
+    public void test14() {
+
+        Map<Integer, List<LogStruct>> logLevelMap = Maps.newHashMap();
+        Map<Integer, LogStruct> curLogLevelMap = Maps.newHashMap();
+
+        String str = ".\n" +
+            "├── 12306\n" +
+            "│   ├── Dockerfile\n" +
+            "│   ├── README.md\n" +
+            "│   ├── UnitTest\n" +
+            "│   │   ├── TestAll.py\n" +
+            "│   │   └── __init__.py\n" +
+            "│   ├── Update.md\n" +
+            "│   ├── __init__.py\n" +
+            "│   ├── agency\n" +
+            "│   │   ├── __init__.py\n" +
+            "│   │   ├── agency_tools.py\n" +
+            "│   │   ├── cdn_utils.py\n" +
+            "│   │   └── proxy_list\n" +
+            "│   ├── cdn_list\n" +
+            "│   ├── config\n" +
+            "│   │   ├── AutoSynchroTime.py\n" +
+            "│   │   ├── TicketEnmu.py\n" +
+            "│   │   ├── __init__.py\n" +
+            "│   │   ├── __init__.pyc\n" +
+            "│   │   ├── configCommon.py\n" +
+            "│   │   ├── emailConf.py\n" +
+            "│   │   ├── emailConf.pyc\n" +
+            "│   │   ├── logger.py\n" +
+            "│   │   ├── pushbearConf.py\n" +
+            "│   │   ├── ticketConf.py\n" +
+            "│   │   ├── ticketConf.pyc\n" +
+            "│   │   ├── ticket_config.yaml\n" +
+            "│   │   └── urlConf.py\n" +
+            "│   ├── damatuCode\n" +
+            "│   │   ├── __init__.py\n" +
+            "│   │   ├── damatuWeb.py\n" +
+            "│   │   └── ruokuai.py\n" +
+            "│   ├── docker-compose.yml\n" +
+            "│   ├── docker.sh\n" +
+            "│   ├── init\n" +
+            "│   │   ├── __init__.py\n" +
+            "│   │   ├── __init__.pyc\n" +
+            "│   │   ├── login.py\n" +
+            "│   │   ├── select_ticket_info.py\n" +
+            "│   │   └── select_ticket_info.pyc\n" +
+            "│   ├── inter\n" +
+            "│   │   ├── AutoSubmitOrderRequest.py\n" +
+            "│   │   ├── CheckOrderInfo.py\n" +
+            "│   │   ├── CheckRandCodeAnsyn.py\n" +
+            "│   │   ├── CheckUser.py\n" +
+            "│   │   ├── ConfirmSingleForQueue.py\n" +
+            "│   │   ├── ConfirmSingleForQueueAsys.py\n" +
+            "│   │   ├── GetPassCodeNewOrderAndLogin.py\n" +
+            "│   │   ├── GetPassengerDTOs.py\n" +
+            "│   │   ├── GetQueueCount.py\n" +
+            "│   │   ├── GetQueueCountAsync.py\n" +
+            "│   │   ├── GetRandCode.py\n" +
+            "│   │   ├── GetRepeatSubmitToken.py\n" +
+            "│   │   ├── LiftTicketInit.py\n" +
+            "│   │   ├── Query.py\n" +
+            "│   │   ├── QueryOrderWaitTime.py\n" +
+            "│   │   ├── SubmitOrderRequest.py\n" +
+            "│   │   └── __init__.py\n" +
+            "│   ├── myException\n" +
+            "│   │   ├── PassengerUserException.py\n" +
+            "│   │   ├── UserPasswordException.py\n" +
+            "│   │   ├── __init__.py\n" +
+            "│   │   ├── balanceException.py\n" +
+            "│   │   ├── ticketConfigException.py\n" +
+            "│   │   ├── ticketIsExitsException.py\n" +
+            "│   │   └── ticketNumOutException.py\n" +
+            "│   ├── myUrllib\n" +
+            "│   │   ├── MySocketUtils.py\n" +
+            "│   │   ├── __init__.py\n" +
+            "│   │   └── httpUtils.py\n" +
+            "│   ├── requirements.txt\n" +
+            "│   ├── run.py\n" +
+            "│   ├── station_name.txt\n" +
+            "│   ├── tkcode.png\n" +
+            "│   ├── tmp\n" +
+            "│   │   ├── __init__.py\n" +
+            "│   │   └── log\n" +
+            "│   │       └── __init__.py\n" +
+            "│   ├── uml\n" +
+            "│   │   ├── uml.png\n" +
+            "│   │   ├── wx.jpeg\n" +
+            "│   │   └── zfb.jpeg\n" +
+            "│   └── utils\n" +
+            "│       ├── __init__.py\n" +
+            "│       └── timeUtil.py\n" +
+            "├── a\n" +
+            "├── data.txt\n" +
+            "├── replace.py\n" +
+            "└── rk\n" +
+            "    └── aa\n" +
+            "        └── a";
+//        String str = "approot/logs\n├── catalina.2019-05-29.log\n├── catalina.2019-06-02.log\n├── catalina_2019-05-29.log\n├── catalina_2019-05-31.log\n├── catalina_2019-06-02.log\n├── disconf\n│   └── download\n│       ├── files\n│       └── tmp\n│           └── files\n├── disconf.log\n├── gc.log\n├── host-manager.2019-05-29.log\n├── host-manager.2019-06-02.log\n├── localhost.2019-05-29.log\n├── localhost.2019-06-02.log\n├── log\n│   ├── error.log\n│   ├── info.log\n│   └── pressure.log\n├── manager.2019-05-29.log\n├── manager.2019-06-02.log\n└── rpc\n    └── kaola-test-demo\n        ├── common-default.log\n        ├── common-error.log\n        ├── rpc-exception.log\n        ├── rpc-monitor.log\n        ├── rpc-operation.log\n        └── rpc-registry.log\n\n8 directories, 22 files";
+        String [] strs = str.split("\n");
+        for (String line : strs) {
+            line = StringUtils.trim(line);
+            if (StringUtils.isBlank(line)) {
+                continue;
+            }
+            System.out.println(line);
+
+//            Integer logLevel = StringUtils.countMatches(line, "├──") + StringUtils.countMatches(line, "└──")
+//                + StringUtils.countMatches(line, "   ") + StringUtils.count;
+            Integer logLevel = 0;
+
+            if (StringUtils.contains(line, "└──")) {
+                Integer index = line.indexOf("└──");
+                logLevel = index / 4 + 1;
+            } else if (StringUtils.contains(line, "├──")) {
+                Integer index = line.lastIndexOf("├──");
+                logLevel = index / 4 + 1;
+            }
+            String logFile = "";
+            if (StringUtils.contains(line, "└")) {
+                logFile = line.substring(StringUtils.lastIndexOf(line, "└") + 4);
+            } else {
+                logFile = line.substring(StringUtils.lastIndexOf(line, "├") + 4);
+            }
+
+            List<LogStruct> logStructList = logLevelMap.get(logLevel);
+            if (null == logStructList) {
+                logStructList = Lists.newArrayList();
+                logLevelMap.put(logLevel, logStructList);
+            }
+
+            LogStruct logStruct = new LogStruct();
+            logStruct.setLogFile(logFile);
+            if (logLevel > 1) {
+                LogStruct parentLog = curLogLevelMap.get(logLevel -  1);
+                parentLog.setIsDir(true);
+                List<LogStruct> childDirList = parentLog.getChildDirList();
+                if (childDirList == null) {
+                    childDirList = Lists.newArrayList();
+                    parentLog.setChildDirList(childDirList);
+                }
+                childDirList.add(logStruct);
+                logStruct.setParentDir(parentLog.getPath());
+            }
+            logStructList.add(logStruct);
+
+            curLogLevelMap.put(logLevel, logStruct);
+        }
+
+        int level = 1;
+        while (logLevelMap.get(level) != null) {
+            List<LogStruct> logStructList = logLevelMap.get(level);
+            for (LogStruct logStruct : logStructList) {
+                System.out.print(logStruct);
+                System.out.print(" ");
+            }
+            System.out.println();
+            level++;
         }
     }
 
