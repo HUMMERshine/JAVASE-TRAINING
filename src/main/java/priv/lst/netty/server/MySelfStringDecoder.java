@@ -16,6 +16,7 @@ public class MySelfStringDecoder extends StringDecoder {
     protected Object decode(
         ChannelHandlerContext ctx, Channel channel, Object msg) throws Exception {
         Object object = super.decode(ctx, channel, msg);
+        channel.setAttachment("this is attachment");
         System.out.println("mySelfStringDencoder : ");
 
         return object;
