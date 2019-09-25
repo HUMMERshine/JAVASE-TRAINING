@@ -5,17 +5,14 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-<<<<<<< HEAD
 import java.util.Set;
 
 import com.google.common.collect.Sets;
 import org.apache.commons.lang3.StringUtils;
-=======
 import java.util.List;
 
 import org.apache.commons.exec.DefaultExecutor;
 import org.apache.commons.exec.ExecuteStreamHandler;
->>>>>>> b45036f641a7f6f668308fbdbca1bc455e763b53
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,8 +35,6 @@ public class testit5 {
 
         System.out.println(dayKey);
     }
-
-<<<<<<< HEAD
 
     @Test
     public void delete() {
@@ -5583,7 +5578,6 @@ public class testit5 {
         }
         System.out.println();
     }
-=======
     @Test
     public void cloneGit() {
         //获得ssh
@@ -5614,6 +5608,4 @@ public class testit5 {
         LOGGER.info("uploadGit success");
     }
 
-
->>>>>>> b45036f641a7f6f668308fbdbca1bc455e763b53
 }
