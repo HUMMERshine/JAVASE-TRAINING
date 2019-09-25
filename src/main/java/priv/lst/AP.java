@@ -7,6 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.ImportResource;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import priv.lst.netty.NettyTest;
 
 /**
@@ -16,7 +17,7 @@ import priv.lst.netty.NettyTest;
  **/
 @SpringBootApplication
 @ImportResource({"classpath:config/app-config.xml"})
-//@EnableCaching
+@EnableScheduling
 public class AP {
     public static Logger LOGGER = LoggerFactory.getLogger(AP.class);
     public static void main(String[] args) {
