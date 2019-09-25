@@ -3,6 +3,7 @@ package priv.lst.java8;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
+import one.util.streamex.EntryStream;
 import one.util.streamex.StreamEx;
 import org.junit.Test;
 import priv.lst.domain.Person;
@@ -24,11 +25,28 @@ public class StreamExDemo {
         Lists.newArrayList(new Person(1, "tom"), new Person(2, "green"), new Person(3, "jim"),
             new Person(3, "jim1"), new Person(3, "jim"));
 
+    private static Map<Integer, Person> personMap = Maps.newHashMap();
+    static {
+        personMap.put(1, new Person(1, "tom"));
+        personMap.put(2, new Person(2, "green"));
+        personMap.put(3, new Person(3, "jim"));
+//        personMap.put(1, new Person(1, "tom"));
+    }
+
     public static void main(String[] args) {
 
 
 
 
+    }
+
+    @Test
+    public void flatMap(){
+        List<String> list = StreamEx.of(personList)
+            .flatMap(person -> Arrays.stream(person.getName().split("")))
+            .toList();
+
+        System.out.println(list);
     }
 
     @Test
@@ -52,5 +70,20 @@ public class StreamExDemo {
             .groupingBy(Person::getId, Collectors.mapping(Person::getName, Collectors.toSet()));
 
         System.out.println(map3);
+    }
+
+    @Test
+    public void EntryStream(){
+        List<Integer> keyList = EntryStream.of(personMap)
+            .keys()
+            .toList();
+
+        System.out.println(keyList);
+
+        List<Map.Entry<Integer , Person>> map = EntryStream.of(personMap)
+            .flatMapToValue((a, b) -> Lists.newArrayList(b, b).stream())
+            .toList();
+
+        System.out.println(map);
     }
 }
